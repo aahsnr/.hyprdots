@@ -1,0 +1,9 @@
+[Unit]
+Description=Atuin Database Maintenance
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/atuin db compact
+ExecStart=/usr/bin/atuin db optimize
+

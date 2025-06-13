@@ -1,0 +1,29 @@
+[Unit]
+Description=Atuin Shell History
+Documentation=https://atuin.sh/docs
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/atuin daemon
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=always
+RestartSec=30
+Environment=ATUIN_CONFIG_DIR=%h/.config/atuin
+
+# Sandboxing
+ProtectSystem=strict
+PrivateTmp=true
+PrivateDevices=true
+ProtectHome=tmpfs
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictRealtime=true
+MemoryDenyWriteExecute=true
+LockPersonality=true
+RestrictSUIDSGID=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
