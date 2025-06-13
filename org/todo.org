@@ -1,0 +1,15 @@
+* Inbox
+** [ ] find fixer for tv
+** [ ] clean apartment
+** [ ] cook
+** [ ]
+* [ ] Org Setup
+    Python Setup
+    Latex Setup
+* Book exams
+DEADLINE: <2023-11-16 Thu>
+
+* Athabasca University
+** registration deadline by 10th of every month
+** starts on 1st of following month
+** faculty of science program advisor: fst_success@bashthcau.ca
