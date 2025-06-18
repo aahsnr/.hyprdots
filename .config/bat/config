@@ -1,0 +1,45 @@
+# ~/.config/bat/config
+
+# Theme configuration (Catppuccin Mocha)
+--theme="Catppuccin-mocha"
+
+# Always show line numbers
+--style="numbers,changes,header"
+
+# Show non-printable characters
+--show-all
+
+# Use italic text where supported
+--italic-text=always
+
+# Use custom pager (delta is a great alternative)
+--pager="less -FRX"
+
+# Always use colored output
+--color=always
+
+# Custom header with git info
+--header="[${GIT_MODIFIED:-?}] [${GIT_STAGED:-?}] [${GIT_BRANCH:-none}]"
+
+# Syntax highlighting for unknown extensions
+--map-syntax "*.conf:INI"
+--map-syntax "*.service:Systemd unit file"
+--map-syntax "*.timer:Systemd timer file"
+--map-syntax "Dockerfile*:Dockerfile"
+--map-syntax "PKGBUILD:Bash"
+--map-syntax "*.ebuild:Bash"
+--map-syntax "*.eclass:Bash"
+--map-syntax "*.gradle:Kotlin"
+
+# Custom syntax mappings for Gentoo-specific files
+--map-syntax "/etc/portage/*.conf:INI"
+--map-syntax "/etc/portage/package.*:INI"
+--map-syntax "/var/db/repos/*/*.ebuild:Bash"
+--map-syntax "/var/db/repos/*/*.eclass:Bash"
+--map-syntax "/etc/conf.d/*:Bash"
+--map-syntax "/etc/init.d/*:Bash"
+
+# Performance optimizations
+--terminal-width=$(tput cols)
+--wrap=character
+

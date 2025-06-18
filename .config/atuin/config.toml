@@ -1,0 +1,38 @@
+[server]
+host = "0.0.0.0"
+port = 8888
+open_browser = false
+
+[client]
+keyring = true
+sync_frequency = "5m"
+search_mode = "fuzzy"
+search_limit = 10000
+filter_mode = "global"
+inline_height = 20
+style = "compact"
+time_format = "%Y-%m-%d %H:%M:%S"
+sync_address = "https://api.atuin.sh"
+
+[database]
+max_db_size = "2GB"  # Adjust based on your storage
+auto_compact = true
+journal_mode = "WAL"  # Better performance
+synchronous = "NORMAL"
+
+[history]
+filter_duplicates = true
+filter_exit_codes = "0-1"  # Only store successful commands
+filter_session_seconds = 1  # Filter very short sessions
+timezone = "local"
+
+[keys]
+vim = true
+search = "ctrl-r"
+up = "ctrl-p"
+down = "ctrl-n"
+
+[shell]
+integration = "zsh"
+prompt_indicator = "❯"
+vim_mode = true
