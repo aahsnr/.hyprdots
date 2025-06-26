@@ -1,0 +1,38 @@
+[updates]
+auto_update = true
+auto_update_interval_hours = 24  # Daily updates to stay current
+cache_dir = "~/.cache/tealdeer"  # Standard cache location
+
+[display]
+compact = false                  # More readable multi-line output
+use_pager = true                 # For longer outputs
+pager = "less -FRXK"             # Gentoo-standard less with good defaults
+raw = false                      # Formatted output
+markdown = true                  # Render markdown properly
+show_hints = true                # Helpful usage hints
+show_os = "linux"                # Prioritize Linux pages
+show_language = "en"             # English pages
+show_progress = true             # Show progress during updates
+quiet = false                    # Show update progress and info
+
+[style]
+# Catppuccin Mocha Theme with enhanced readability
+command_name = "bold #f5e0dc"    # Command highlight (renamed from command)
+description = "#cdd6f4"          # Description text
+example_text = "#cdd6f4"         # Example text color
+example_code = "bold #a6e3a1"    # Code blocks - green for visibility
+example_variable = "italic #f38ba8" # Variables in examples - pink italic
+header = "bold #b4befe"          # Section headers - lavender
+quote = "#bac2de"                # Quoted text - muted blue
+hidden = "dim #6c7086"           # Hidden elements - overlay0
+code_block = "#89b4fa"           # Code background - blue
+code_block_line_number = "#585b70" # Line numbers - surface2
+
+[output]
+show_hints = true                # Helpful usage hints (backup setting)
+show_os = "linux"                # Prioritize Linux pages (backup setting)
+show_language = "en"             # English pages (backup setting)
+show_progress = true             # Show progress during updates (backup setting)
+
+[gentoo]
+priority = ["portage", "emerge", "equery", "ebuild", "etc-update", "revdep-rebuild"]

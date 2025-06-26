@@ -1,0 +1,11 @@
+[Unit]
+Description=TheFuck command cache updater
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/thefuck --update-cache
+Environment=XDG_CACHE_HOME=%h/.cache
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily tldr cache update
+Requires=tldr-update.service
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=1h
+
+[Install]
+WantedBy=timers.target

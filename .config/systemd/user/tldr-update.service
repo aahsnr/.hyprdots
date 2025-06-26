@@ -1,0 +1,7 @@
+[Unit]
+Description=Update tldr cache
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/tldr --update
