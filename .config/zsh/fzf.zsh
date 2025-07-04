@@ -28,6 +28,10 @@ export FZF_PREVIEW_COMMAND="[[ \$(file --mime {}) =~ binary ]] &&
     (bat --style=numbers --color=always {} || 
     cat {}) 2>/dev/null | head -500"
 
+
+# Source FZF completion
+[[ -f /usr/share/fzf/shell/completion.zsh ]] && source /usr/share/fzf/shell/completion.zsh
+
 # Detect if running on Atomic Desktop (Silverblue, Kinoite, etc.)
 function is_atomic_desktop() {
     [[ -f /run/ostree-booted ]] && return 0 || return 1
