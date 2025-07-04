@@ -1,4 +1,3 @@
-# =~/.config/ripgrep/ripgreprc
 # Catppuccin Mocha theme colors
 --colors=path:fg:#cba6f7      # Mauve (file paths)
 --colors=path:style:bold
@@ -44,7 +43,30 @@
 --glob=!*.fls
 --glob=!*.fdb_latexmk
 
+# Fedora-specific excludes
+--glob=!*.rpm
+--glob=!*.dnf
+--glob=!*.cache
+--glob=!*.tmp
+--glob=!*.lock
+--glob=!*.log
+--glob=!*.pid
+--glob=!*.socket
+--glob=!*.service.d/
+--glob=!*.target.d/
+--glob=!/var/cache/dnf/
+--glob=!/var/lib/dnf/
+--glob=!/var/log/dnf*/
+--glob=!/var/lib/rpm/
+--glob=!/proc/
+--glob=!/sys/
+--glob=!/dev/
+--glob=!/run/
+--glob=!/tmp/
+--glob=!/boot/
+--glob=!/media/
+--glob=!/mnt/
+
 # Binary handling
 --binary
 --text
-

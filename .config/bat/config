@@ -1,10 +1,10 @@
 # ~/.config/bat/config
 
-# Theme configuration (Catppuccin Mocha)
---theme="Catppuccin-mocha"
+# Theme configuration (will be set after theme installation)
+--theme=Catppuccin-mocha
 
-# Always show line numbers
---style="numbers,changes,header"
+# Display style: line numbers, git changes, and header
+--style=numbers,changes,header
 
 # Show non-printable characters
 --show-all
@@ -12,34 +12,60 @@
 # Use italic text where supported
 --italic-text=always
 
-# Use custom pager (delta is a great alternative)
---pager="less -FRX"
+# Custom pager configuration
+--pager=less -FRX
 
 # Always use colored output
 --color=always
 
-# Custom header with git info
---header="[${GIT_MODIFIED:-?}] [${GIT_STAGED:-?}] [${GIT_BRANCH:-none}]"
+# Syntax highlighting mappings for common file types
+--map-syntax=*.conf:INI
+--map-syntax=*.config:INI
+--map-syntax=*.service:SystemD
+--map-syntax=*.timer:SystemD
+--map-syntax=*.target:SystemD
+--map-syntax=*.socket:SystemD
+--map-syntax=*.mount:SystemD
+--map-syntax=Dockerfile*:Dockerfile
+--map-syntax=*.spec:RPM Spec
+--map-syntax=*.changes:Diff
+--map-syntax=*.patch:Diff
 
-# Syntax highlighting for unknown extensions
---map-syntax "*.conf:INI"
---map-syntax "*.service:Systemd unit file"
---map-syntax "*.timer:Systemd timer file"
---map-syntax "Dockerfile*:Dockerfile"
---map-syntax "PKGBUILD:Bash"
---map-syntax "*.ebuild:Bash"
---map-syntax "*.eclass:Bash"
---map-syntax "*.gradle:Kotlin"
+# Fedora-specific file mappings
+--map-syntax=*.repo:INI
+--map-syntax=*.xml:XML
+--map-syntax=kickstart.cfg:Bash
+--map-syntax=*.ks:Bash
 
-# Custom syntax mappings for Gentoo-specific files
---map-syntax "/etc/portage/*.conf:INI"
---map-syntax "/etc/portage/package.*:INI"
---map-syntax "/var/db/repos/*/*.ebuild:Bash"
---map-syntax "/var/db/repos/*/*.eclass:Bash"
---map-syntax "/etc/conf.d/*:Bash"
---map-syntax "/etc/init.d/*:Bash"
+# System configuration files
+--map-syntax=/etc/sysconfig/*:Bash
+--map-syntax=/etc/dnf/*.conf:INI
+--map-syntax=/etc/dnf/*.repo:INI
+--map-syntax=/etc/yum.repos.d/*.repo:INI
+--map-syntax=/etc/security/*.conf:INI
+--map-syntax=/etc/NetworkManager/system-connections/*:INI
+--map-syntax=/etc/modprobe.d/*.conf:Bash
 
-# Performance optimizations
---terminal-width=$(tput cols)
---wrap=character
+# SystemD unit files (using correct syntax name)
+--map-syntax=/usr/lib/systemd/system/*:SystemD
+--map-syntax=/etc/systemd/system/*:SystemD
+--map-syntax=/home/*/.config/systemd/user/*:SystemD
 
+# SELinux policy files
+--map-syntax=*.te:C
+--map-syntax=*.if:C
+--map-syntax=*.fc:Plain Text
+
+# Container and virtualization files
+--map-syntax=Containerfile:Dockerfile
+--map-syntax=*.containerfile:Dockerfile
+--map-syntax=Vagrantfile:Ruby
+
+# Log files and plain text
+--map-syntax=/var/log/dnf.log:Log
+--map-syntax=/var/log/dnf.rpm.log:Log
+--map-syntax=*.log:Log
+
+# Fedora-specific configuration files
+--map-syntax=/etc/fedora-release:Plain Text
+--map-syntax=/etc/system-release:Plain Text

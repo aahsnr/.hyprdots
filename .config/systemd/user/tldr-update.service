@@ -1,7 +1,12 @@
 [Unit]
 Description=Update tldr cache
 After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/tldr --update
+Environment=HOME=%h
+
+[Install]
+WantedBy=default.target

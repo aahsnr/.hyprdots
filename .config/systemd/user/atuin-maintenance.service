@@ -1,9 +1,15 @@
 [Unit]
 Description=Atuin Database Maintenance
-After=network.target
+After=atuin.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/atuin db compact
-ExecStart=/usr/bin/atuin db optimize
+ExecStartPre=/bin/sh -c 'systemctl --user is-active --quiet atuin.service || exit 0'
+ExecStartPre=/bin/sh -c 'test -f %h/.local/share/atuin/history.db || exit 0'
+ExecStart=/bin/sh -c 'if command -v sqlite3 >/dev/null 2>&1; then sqlite3 %h/.local/share/atuin/history.db "PRAGMA optimize; PRAGMA wal_checkpoint(TRUNCATE); PRAGMA integrity_check;"; fi'
+IOSchedulingClass=3
+Nice=19
+PrivateTmp=true
 
+[Install]
+WantedBy=default.target

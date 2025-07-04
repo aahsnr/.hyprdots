@@ -1,19 +1,20 @@
 gui:
+  # Catppuccin Mocha Theme (maintained from original)
   theme:
     lightTheme: false
     activeBorderColor:
-      - '#89b4fa'  # Catppuccin Mocha Blue
+      - '#cba6f7'  # Catppuccin Mocha Mauve
       - bold
     inactiveBorderColor:
-      - '#585b70'  # Catppuccin Mocha Surface2
+      - '#6c7086'  # Catppuccin Mocha Surface2
     optionsTextColor:
-      - '#74c7ec'  # Catppuccin Mocha Sapphire
+      - '#89b4fa'  # Catppuccin Mocha Blue
     selectedLineBgColor:
       - '#313244'  # Catppuccin Mocha Surface0
     selectedRangeBgColor:
-      - '#313244'
+      - '#313244'  # Catppuccin Mocha Surface0
     cherryPickedCommitBgColor:
-      - '#313244'
+      - '#313244'  # Catppuccin Mocha Surface0
     cherryPickedCommitFgColor:
       - '#a6e3a1'  # Catppuccin Mocha Green
     unstagedChangesColor:
@@ -22,7 +23,43 @@ gui:
       - '#cdd6f4'  # Catppuccin Mocha Text
     searchingActiveBorderColor:
       - '#fab387'  # Catppuccin Mocha Peach
+    cherryPickedCommitBgColor:
+      - '#313244'  # Catppuccin Mocha Surface0
+    cherryPickedCommitFgColor:
+      - '#a6e3a1'  # Catppuccin Mocha Green
+    unstagedChangesColor:
+      - '#f38ba8'  # Catppuccin Mocha Red
+    defaultFgColor:
+      - '#cdd6f4'  # Catppuccin Mocha Text
 
+  # Enhanced display settings for better AstroNvim integration
+  scrollHeight: 2
+  scrollPastBottom: true
+  mouseEvents: true
+  skipDiscardChangeWarning: false
+  skipStashWarning: false
+  showFileTree: true
+  showListFooter: true
+  showRandomTip: true
+  showBranchCommitHash: true
+  showBottomLine: true
+  showPanelJumps: true
+  showCommandLog: true
+  showIcons: true
+  nerdFontsVersion: "3"
+  commitLength:
+    show: true
+  splitDiff: 'auto'
+  skipRewordInEditorWarning: false
+  border: 'rounded'
+  animateExpansion: true
+  portraitMode: 'auto'
+  filterMode: 'substring'
+  spinner:
+    frames: ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
+    rate: 50
+
+  # Vim-like keybindings optimized for AstroNvim users
   keybinding:
     universal:
       quit: 'q'
@@ -40,19 +77,45 @@ gui:
       scrollRight: 'L'
       gotoTop: 'gg'
       gotoBottom: 'G'
-      startSearch: '/'
-      optionMenu: '?'
-      optionMenu-alt1: ''
+      toggleRangeSelect: 'v'
+      rangeSelectDown: '<s-j>'
+      rangeSelectUp: '<s-k>'
+      prevBlock: '<left>'
+      nextBlock: '<right>'
+      prevBlock-alt: 'h'
+      nextBlock-alt: 'l'
+      nextTab: ']'
+      prevTab: '['
+      nextScreenMode: '+'
+      prevScreenMode: '_'
+      undo: 'z'
+      redo: '<c-z>'
+      filteringMenu: '<c-s>'
+      diffingMenu: 'W'
+      diffingMenu-alt: '<c-e>'
+      copyToClipboard: '<c-o>'
+      openRecentRepos: '<c-r>'
+      submitEditorText: '<enter>'
+      extrasMenu: '@'
+      toggleWhitespaceInDiffView: '<c-w>'
+      increaseContextInDiffView: '}'
+      decreaseContextInDiffView: '{'
+      increaseRenameSimilarityThreshold: ')'
+      decreaseRenameSimilarityThreshold: '('
+      openDiffTool: '<c-t>'
 
     status:
       checkForUpdate: 'u'
       recentRepos: '<enter>'
+      allBranchesLogGraph: 'a'
 
     files:
       commitChanges: 'c'
       commitChangesWithoutHook: 'C'
       amendLastCommit: 'A'
       commitChangesWithEditor: '<c-o>'
+      findBaseCommitForFixup: '<c-f>'
+      confirmDiscard: 'x'
       ignoreFile: 'i'
       refreshFiles: 'r'
       stashAllChanges: 's'
@@ -61,23 +124,36 @@ gui:
       viewResetOptions: 'D'
       fetch: 'f'
       toggleTreeView: '`'
+      openMergeTool: 'M'
+      openStatusFilter: '<c-b>'
 
     branches:
       createPullRequest: 'o'
       viewPullRequestOptions: 'O'
+      copyPullRequestURL: '<c-y>'
       checkoutBranch: '<space>'
       checkoutBranch-alt: 'c'
       forceCheckoutBranch: 'F'
       rebaseBranch: 'r'
+      renameBranch: 'R'
       mergeIntoCurrentBranch: 'm'
       viewBranchOptions: 'M'
       fastForward: 'f'
+      createTag: 'T'
       push: 'P'
       pull: 'p'
-      renameBranch: 'R'
+      setUpstream: 'u'
+      fetchRemote: 'f'
+      sortOrder: 's'
+      gitFlowOptions: 'i'
       createResetToBranchMenu: 'g'
+      viewResetOptions: 'R'
       deleteBranch: 'd'
+      mergeBranch: 'm'
       copyToClipboard: 'y'
+
+    worktrees:
+      viewWorktreeOptions: 'w'
 
     commits:
       squashDown: 's'
@@ -90,69 +166,228 @@ gui:
       moveDownCommit: '<c-j>'
       moveUpCommit: '<c-k>'
       amendToCommit: 'A'
+      amendAttributeMenu: 'a'
       pickCommit: 'p'
       revertCommit: 't'
       cherryPickCopy: 'c'
-      cherryPickCopyRange: 'C'
       pasteCommits: 'v'
+      markCommitAsBaseForRebase: 'B'
       tagCommit: 'T'
       checkoutCommit: '<space>'
       resetCherryPick: '<c-r>'
       copyCommitAttributeToClipboard: 'y'
+      openLogMenu: '<c-l>'
+      openInBrowser: 'o'
+      viewBisectOptions: 'b'
+      startInteractiveRebase: 'i'
+
+    amendAttribute:
+      resetAuthor: 'a'
+      setAuthor: 'A'
+      addCoAuthor: 'c'
 
     stash:
       popStash: 'g'
+      renameStash: 'r'
       applyStash: 'a'
-      viewStashOptions: '<space>'
+      viewStashOptions: '<enter>'
       dropStash: 'd'
 
+    commitFiles:
+      checkoutCommitFile: 'c'
+
     main:
-      toggleDragSelect: 'v'
-      toggleDragSelect-alt: 'V'
       toggleSelectHunk: 'a'
       pickBothHunks: 'b'
       editSelectHunk: 'e'
       openFile: 'o'
-      openFile-alt: '<space>'
-      openMergeTool: 'M'
-      openDiffTool: 'd'
-      refresh: 'r'
+      openFileInEditor: '<c-o>'
+      openDiffTool: '<c-t>'
+      refreshStagingPanel: 'r'
       stageSelection: 's'
-      unstageSelection: 'u'
-      prevConflict: '<'
-      nextConflict: '>'
-      selectPrevConflict: '['
-      selectNextConflict: ']'
-      undo: 'U'
-      redo: '<c-r>'
+      resetSelection: 'r'
+      togglePanel: '<tab>'
+      prevConflict: '['
+      nextConflict: ']'
+      selectPrevConflict: '<'
+      selectNextConflict: '>'
+      selectPrevHunk: 'K'
+      selectNextHunk: 'J'
+      undo: 'z'
+      redo: '<c-z>'
+      toggleDragSelect: 'v'
+      toggleDragSelect-alt: 'V'
+      toggleSelectHunk: 'a'
+      copyToClipboard: '<c-o>'
+
+    submodules:
+      init: 'i'
+      update: 'u'
+      bulkMenu: 'b'
+      delete: 'd'
+      enter: '<enter>'
+
+    commitMessage:
+      confirm: '<enter>'
+      switchToEditor: '<c-o>'
 
 git:
+  # Git configuration optimized for Fedora 42
   paging:
     colorArg: always
-    pager: delta --paging=never
+    pager: delta --dark --paging=never --line-numbers --side-by-side
+    useConfig: false
+    externalDiffCommand: ''
 
+  # Fedora 42 specific settings
+  commit:
+    signOff: false
+    autoWrapCommitMessage: true
+    autoWrapWidth: 72
+
+  merging:
+    manualCommit: false
+    args: ''
+    tool: 'nvimdiff'
+    conflictStyle: 'zdiff3'
+
+  log:
+    order: 'topo-order'
+    showGraph: 'when-maximised'
+    showWholeGraph: false
+
+  skipHookPrefix: WIP
+  autoFetch: true
+  autoRefresh: true
+  fetchAll: true
+  branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --'
+  allBranchesLogCmd: 'git log --graph --all --color=always --abbrev-commit --decorate --date=relative --pretty=medium'
+  overrideGpg: false
+  disableForcePushing: false
+  parseEmoji: false
+  truncateCopiedCommitHashesTo: 12
+
+# OS-specific settings for Fedora 42
 os:
-  editCommand: nvim
+  # Use nvim (AstroNvim) as the default editor
+  editCommand: 'nvim'
   editCommandTemplate: '{{editor}} "{{filename}}"'
-  openCommand: xdg-open
+  editPreset: 'nvim'
+  
+  # Fedora 42 specific open command
+  openCommand: 'xdg-open'
+  openLinkCommand: 'xdg-open {{link}}'
+  
+  # Copy commands for Fedora 42
+  copyToClipboardCmd: 'wl-copy'  # For Wayland
+  readFromClipboardCmd: 'wl-paste'  # For Wayland
+  
+  # Alternative for X11 sessions
+  # copyToClipboardCmd: 'xclip -selection clipboard'
+  # readFromClipboardCmd: 'xclip -selection clipboard -o'
 
+# Update and notification settings
+update:
+  method: 'prompt'
+  days: 14
+
+# Refresh settings
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+
+# Confirmation settings
+confirmOnQuit: false
+quitOnTopLevelReturn: false
+
+# Startup settings
+disableStartupPopups: true
+notARepository: 'prompt'
+
+# Custom commands for enhanced AstroNvim integration
 customCommands:
+  # Quick commit amendments
   - key: 'e'
     command: 'git commit --amend --no-edit'
     context: 'commits'
-    description: 'Amend commit without editing'
-  - key: 'E'
-    command: 'nvim -c "Gedit {{commitHash}}:"'
-    context: 'commits'
-    description: 'Edit commit in Neovim'
+    description: 'Amend commit without editing message'
+    stream: true
+  
+  # Open files in AstroNvim
   - key: 'n'
     command: 'nvim {{filename}}'
     context: 'files'
-    description: 'Open file in Neovim'
+    description: 'Open file in AstroNvim'
+    subprocess: true
+  
+  # Advanced AstroNvim integration
   - key: 'N'
-    command: 'nvim +"Gedit {{branchName}}:"'
+    command: 'nvim -c "lua require(\"telescope.builtin\").git_files()"'
+    context: 'global'
+    description: 'Open AstroNvim with Telescope git files'
+    subprocess: true
+  
+  # View file history in AstroNvim
+  - key: 'H'
+    command: 'nvim -c "lua require(\"telescope.builtin\").git_bcommits()"'
+    context: 'files'
+    description: 'View file history with Telescope'
+    subprocess: true
+  
+  # Interactive rebase with AstroNvim
+  - key: 'I'
+    command: 'git rebase -i {{.CheckedOutBranch.Name}}~{{.SelectedLocalCommit.Sha}}'
+    context: 'commits'
+    description: 'Interactive rebase from selected commit'
+    subprocess: true
+  
+  # Create new branch with AstroNvim telescope
+  - key: 'B'
+    command: 'nvim -c "lua require(\"telescope.builtin\").git_branches()"'
     context: 'branches'
-    description: 'Open branch in Neovim'
+    description: 'Browse branches with Telescope'
+    subprocess: true
+  
+  # Search commits with AstroNvim
+  - key: '/'
+    command: 'nvim -c "lua require(\"telescope.builtin\").git_commits()"'
+    context: 'commits'
+    description: 'Search commits with Telescope'
+    subprocess: true
+  
+  # View diff in AstroNvim
+  - key: 'D'
+    command: 'nvim -c "Gvdiffsplit" {{filename}}'
+    context: 'files'
+    description: 'View diff in AstroNvim with fugitive'
+    subprocess: true
+  
+  # Quick push with force-with-lease
+  - key: 'P'
+    command: 'git push --force-with-lease'
+    context: 'global'
+    description: 'Force push with lease (safer)'
+    stream: true
+  
+  # Stash with message
+  - key: 'S'
+    command: 'git stash push -m "{{.Form.Message}}"'
+    context: 'files'
+    description: 'Stash with custom message'
+    prompts:
+      - type: 'input'
+        key: 'Message'
+        title: 'Stash Message'
+        initialValue: 'WIP: '
+    stream: true
 
-notARepository: skip
-disableStartupPopups: true
+# AstroNvim specific services configuration
+services:
+  # Enable GitHub integration if available
+  github: 'github.com'
+  gitlab: 'gitlab.com'
+
+# Fedora 42 performance optimizations
+performance:
+  useAsyncGit: true
+  reportRuntimeErrors: true

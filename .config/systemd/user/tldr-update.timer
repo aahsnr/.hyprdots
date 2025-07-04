@@ -5,7 +5,7 @@ Requires=tldr-update.service
 [Timer]
 OnCalendar=daily
 Persistent=true
-RandomizedDelaySec=1h
+RandomizedDelaySec=3600
 
 [Install]
 WantedBy=timers.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Run thefuck cache management weekly
+Requires=thefuck-cache.service
+
+[Timer]
+OnCalendar=weekly
+RandomizedDelaySec=3600
+Persistent=true
+
+[Install]
+WantedBy=timers.target

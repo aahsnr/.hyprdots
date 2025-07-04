@@ -1,35 +1,21 @@
-import os
-from pathlib import Path
-from thefuck.utils import for_app
+# The Fuck configuration file
+# Visit https://github.com/nvbn/thefuck for more information
 
-# Catppuccin Mocha color scheme
-COLORS = {
-    "background": "#1e1e2e",
-    "foreground": "#cdd6f4",
-    "text": "#cdd6f4",
-    "primary": "#cba6f7",
-    "secondary": "#f5c2e7",
-    "alert": "#f38ba8",
-    "warning": "#fab387",
-    "success": "#a6e3a1",
-}
-
-# Gentoo-specific optimizations
-GENTOO_SPECIFIC = {
-    "emerge": "emerge -a",
-    "eix": "eix -F",
-    "equery": "equery --quiet",
-    "etc-update": "etc-update --automode -3",
-}
-
-# Main configuration
+# List of enabled rules, comment out to disable:
 rules = [
-    "brew_prefix",
+    "apt_get",
+    "brew_install",
+    "brew_link",
+    "brew_uninstall",
+    "brew_unknown_command",
+    "cd_correction",
+    "cd_mkdir",
     "cd_parent",
     "chmod_x",
-    "choco_install",
     "composer_not_command",
     "cp_omitting_directory",
+    "django_south_ghost",
+    "django_south_merge",
     "docker_login",
     "docker_not_command",
     "dry",
@@ -44,12 +30,14 @@ rules = [
     "git_commit_amend",
     "git_diff_staged",
     "git_fix_stash",
+    "git_merge",
     "git_no_remote",
     "git_pull",
     "git_pull_clone",
     "git_push",
     "git_push_different_branch_name",
     "git_push_pull",
+    "git_push_upstream",
     "git_rebase_no_changes",
     "git_remote_delete",
     "git_rm_local_modifications",
@@ -96,94 +84,61 @@ rules = [
     "sudo_command_from_user_path",
     "switch_lang",
     "systemctl",
-    "test.py",
     "tmux",
     "tsuru_login",
     "tsuru_not_command",
     "unknown_command",
     "vagrant_up",
     "whois",
+    "dnf_no_such_command",
 ]
 
-
-# Gentoo-specific command corrections
-@for_app("emerge", "eix", "equery", "etc-update", "qlist", "qlop", "eclean")
-def match_gentoo_commands(command):
-    for gentoo_cmd in GENTOO_SPECIFIC.keys():
-        if gentoo_cmd in command.script:
-            return True
-    return False
-
-
-def get_new_command(command):
-    for gentoo_cmd, replacement in GENTOO_SPECIFIC.items():
-        if gentoo_cmd in command.script:
-            return command.script.replace(gentoo_cmd, replacement)
-    return command.script
-
-
-# Performance optimizations
-wait_command = 3
-require_confirmation = True
-no_colors = False
-debug = False
-alter_history = True
+# Rules to exclude (comment out to enable):
 exclude_rules = []
+
+# Maximum time in seconds for getting previous command output:
+wait_command = 3
+
+# Require confirmation before running new command:
+require_confirmation = True
+
+# Max amount of previous commands to keep in history:
+history_limit = 2000
+
+# The number of close matches to suggest when a rule is not found:
+num_close_matches = 5
+
+# Disable colors in output:
+no_colors = False
+
+# Enable debug mode:
+debug = False
+
+# Alter history file (requires proper shell integration):
+alter_history = True
+
+# Priority settings for rules (lower number = higher priority):
+priority = "no_command=9999:apt_get=100:git_push=1000:rm_root=1:dnf_no_such_command=50:sudo=100:systemctl=200"
+
+# Environment variables for thefuck execution:
 env = {
     "LC_ALL": "C",
     "LANG": "C",
-    "GIT_TRACE": "0",
-    "TF_HISTORY_LIMIT": "5000",
 }
 
-# Zsh integration
-if "ZSH_VERSION" in os.environ:
-    zsh_autosuggest_highlight = "fg=" + COLORS["warning"]
-    env.update(
-        {
-            "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE": zsh_autosuggest_highlight,
-            "ZSH_HIGHLIGHT_STYLES[command]": "fg=" + COLORS["primary"],
-            "ZSH_HIGHLIGHT_STYLES[alias]": "fg=" + COLORS["secondary"],
-        }
-    )
+# Instant mode (faster, but requires shell integration):
+instant_mode = False
+
+# Slow commands (ignored in instant mode):
+slow_commands = ["lein", "react-native", "gradle", "./gradlew", "vagrant"]
+
+# Wait slow command timeout:
+wait_slow_command = 15
+
+# History limit for slow commands:
+slow_commands_history_limit = 999
 
 
-# Custom prompt with Catppuccin colors
-def fuck_prompt():
-    return "\033[38;2;203;166;247m➜\033[0m \033[38;2;245;194;231mthefuck\033[0m "
-
-
-if "ZSH_VERSION" in os.environ:
-
-    def fuck_prompt():
-        return "%F{#cba6f7}➜%f %F{#f5c2e7}thefuck%f "
-
-
-priority = {
-    "git_push": 100,
-    "rm_root": 100,
-    "emerge": 90,
-    "sudo": 80,
-}
-
-# Gentoo-specific path optimizations
-path = os.environ.get("PATH", "").split(":")
-gentoo_paths = [
-    "/usr/local/bin",
-    "/usr/bin",
-    "/bin",
-    "/usr/sbin",
-    "/sbin",
-    "/opt/bin",
-    f"{Path.home()}/.local/bin",
-    f"{Path.home()}/.cargo/bin",
-]
-path = [p for p in path if p in gentoo_paths] + [
-    p for p in gentoo_paths if p not in path
-]
-env["PATH"] = ":".join(path)
-
-# Cache configuration
-cache_dir = f"{Path.home()}/.cache/thefuck"
-cache_file = f"{cache_dir}/commands"
-os.makedirs(cache_dir, exist_ok=True)
+# Get corrected commands function (required for proper operation):
+def get_corrected_commands():
+    return []

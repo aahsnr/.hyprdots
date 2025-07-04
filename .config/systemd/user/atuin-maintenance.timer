@@ -1,8 +1,10 @@
 [Unit]
 Description=Daily Atuin Database Maintenance
+Requires=atuin-maintenance.service
 
 [Timer]
 OnCalendar=daily
+RandomizedDelaySec=3600
 Persistent=true
 
 [Install]
