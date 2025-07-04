@@ -1,0 +1,300 @@
+[manager]
+# Catppuccin Mocha color scheme
+cwd = { fg = "#89b4fa" }  # Blue
+
+hovered         = { fg = "#1e1e2e", bg = "#89b4fa" }  # Blue background
+preview_hovered = { underline = true }
+
+# Find
+find_keyword  = { fg = "#f9e2af", italic = true }       # Yellow
+find_position = { fg = "#f5c2e7", bg = "reset", italic = true }  # Pink
+
+# Marker
+marker_selected = { fg = "#a6e3a1", bg = "#a6e3a1" }    # Green
+marker_copied   = { fg = "#f9e2af", bg = "#f9e2af" }    # Yellow
+marker_cut      = { fg = "#f38ba8", bg = "#f38ba8" }    # Red
+
+# Tab
+tab_active   = { fg = "#1e1e2e", bg = "#cba6f7" }       # Mauve
+tab_inactive = { fg = "#cdd6f4", bg = "#45475a" }       # Surface1
+tab_width    = 1
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#7f849c" }                      # Overlay0
+
+# Highlighting
+syntect_theme = "~/.config/yazi/Catppuccin-mocha.tmTheme"
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#45475a", bg = "#45475a" }    # Surface1
+
+# Mode
+mode_normal = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }  # Blue
+mode_select = { fg = "#1e1e2e", bg = "#a6e3a1", bold = true }  # Green
+mode_unset  = { fg = "#1e1e2e", bg = "#f38ba8", bold = true }  # Red
+
+# Progress
+progress_label  = { fg = "#ffffff", bold = true }
+progress_normal = { fg = "#89b4fa", bg = "#45475a" }     # Blue on Surface1
+progress_error  = { fg = "#f38ba8", bg = "#45475a" }     # Red on Surface1
+
+# Permissions
+permissions_t = { fg = "#a6e3a1" }  # Green
+permissions_r = { fg = "#f9e2af" }  # Yellow
+permissions_w = { fg = "#f38ba8" }  # Red
+permissions_x = { fg = "#74c7ec" }  # Sapphire
+permissions_s = { fg = "#cba6f7" }  # Mauve
+
+[input]
+border   = { fg = "#89b4fa" }   # Blue
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[select]
+border   = { fg = "#89b4fa" }   # Blue
+active   = { fg = "#f5c2e7" }   # Pink
+inactive = {}
+
+[tasks]
+border  = { fg = "#89b4fa" }    # Blue
+title   = {}
+hovered = { underline = true }
+
+[which]
+mask            = { bg = "#11111b" }     # Crust
+cand            = { fg = "#74c7ec" }     # Sapphire
+rest            = { fg = "#9399b2" }     # Overlay1
+desc            = { fg = "#f5c2e7" }     # Pink
+separator       = "  "
+separator_style = { fg = "#585b70" }     # Surface2
+
+[help]
+on      = { fg = "#f5c2e7" }             # Pink
+exec    = { fg = "#74c7ec" }             # Sapphire
+desc    = { fg = "#9399b2" }             # Overlay1
+hovered = { bg = "#585b70", bold = true } # Surface2
+
+[filetype]
+rules = [
+    # Images
+    { mime = "image/*", fg = "#f5c2e7" },              # Pink
+    
+    # Videos
+    { mime = "video/*", fg = "#fab387" },              # Peach
+    { mime = "video/webm", fg = "#fab387" },
+    { mime = "video/mp4", fg = "#fab387" },
+    { mime = "video/x-msvideo", fg = "#fab387" },
+    
+    # Audio
+    { mime = "audio/*", fg = "#89b4fa" },              # Blue
+    
+    # Archives
+    { mime = "application/zip", fg = "#f9e2af" },      # Yellow
+    { mime = "application/gzip", fg = "#f9e2af" },
+    { mime = "application/x-tar", fg = "#f9e2af" },
+    { mime = "application/x-bzip", fg = "#f9e2af" },
+    { mime = "application/x-bzip2", fg = "#f9e2af" },
+    { mime = "application/x-7z-compressed", fg = "#f9e2af" },
+    { mime = "application/x-rar", fg = "#f9e2af" },
+    { mime = "application/xz", fg = "#f9e2af" },
+    
+    # Documents
+    { mime = "application/pdf", fg = "#f38ba8" },      # Red
+    { mime = "application/doc", fg = "#89b4fa" },      # Blue
+    { mime = "application/docx", fg = "#89b4fa" },
+    { mime = "application/xls", fg = "#a6e3a1" },      # Green
+    { mime = "application/xlsx", fg = "#a6e3a1" },
+    { mime = "application/ppt", fg = "#fab387" },      # Peach
+    { mime = "application/pptx", fg = "#fab387" },
+    
+    # Text
+    { mime = "text/*", fg = "#a6e3a1" },               # Green
+    
+    # Programming
+    { name = "*.c", fg = "#89b4fa" },                  # Blue
+    { name = "*.cpp", fg = "#89b4fa" },
+    { name = "*.cc", fg = "#89b4fa" },
+    { name = "*.h", fg = "#89b4fa" },
+    { name = "*.hpp", fg = "#89b4fa" },
+    { name = "*.rs", fg = "#fab387" },                 # Peach
+    { name = "*.go", fg = "#74c7ec" },                 # Sapphire
+    { name = "*.py", fg = "#f9e2af" },                 # Yellow
+    { name = "*.js", fg = "#f9e2af" },
+    { name = "*.ts", fg = "#89b4fa" },                 # Blue
+    { name = "*.html", fg = "#fab387" },               # Peach
+    { name = "*.css", fg = "#89b4fa" },                # Blue
+    { name = "*.scss", fg = "#f5c2e7" },               # Pink
+    { name = "*.sass", fg = "#f5c2e7" },
+    { name = "*.json", fg = "#f9e2af" },               # Yellow
+    { name = "*.xml", fg = "#a6e3a1" },                # Green
+    { name = "*.yaml", fg = "#f38ba8" },               # Red
+    { name = "*.yml", fg = "#f38ba8" },
+    { name = "*.toml", fg = "#fab387" },               # Peach
+    { name = "*.ini", fg = "#cba6f7" },                # Mauve
+    { name = "*.conf", fg = "#cba6f7" },
+    { name = "*.sh", fg = "#a6e3a1" },                 # Green
+    { name = "*.bash", fg = "#a6e3a1" },
+    { name = "*.zsh", fg = "#a6e3a1" },
+    { name = "*.fish", fg = "#a6e3a1" },
+    { name = "*.vim", fg = "#a6e3a1" },
+    { name = "*.lua", fg = "#89b4fa" },                # Blue
+    { name = "*.rb", fg = "#f38ba8" },                 # Red
+    { name = "*.php", fg = "#cba6f7" },                # Mauve
+    { name = "*.java", fg = "#fab387" },               # Peach
+    { name = "*.class", fg = "#fab387" },
+    { name = "*.jar", fg = "#fab387" },
+    
+    # Makefiles and build
+    { name = "Makefile", fg = "#a6e3a1" },             # Green
+    { name = "Dockerfile", fg = "#89b4fa" },           # Blue
+    { name = "docker-compose.yml", fg = "#89b4fa" },
+    { name = "*.mk", fg = "#a6e3a1" },
+    
+    # Git
+    { name = ".gitignore", fg = "#fab387" },           # Peach
+    { name = ".gitattributes", fg = "#fab387" },
+    { name = ".gitmodules", fg = "#fab387" },
+    
+    # Configs
+    { name = "*.cfg", fg = "#cba6f7" },                # Mauve
+    { name = "*.config", fg = "#cba6f7" },
+    { name = "*.properties", fg = "#cba6f7" },
+    
+    # Logs
+    { name = "*.log", fg = "#6c7086" },                # Surface2
+    { name = "*.out", fg = "#6c7086" },
+    
+    # Temporary files
+    { name = "*~", fg = "#6c7086" },                   # Surface2
+    { name = "*.tmp", fg = "#6c7086" },
+    { name = "*.temp", fg = "#6c7086" },
+    { name = "*.bak", fg = "#6c7086" },
+    { name = "*.swp", fg = "#6c7086" },
+    { name = "*.swo", fg = "#6c7086" },
+    
+    # Executables
+    { name = "*/", fg = "#89b4fa" },                   # Blue for directories
+    { name = "*", fg = "#cdd6f4" },                    # Text for regular files
+]
+
+[icon]
+rules = [
+    # Programming
+    { name = "*.c", text = "" },
+    { name = "*.cpp", text = "" },
+    { name = "*.cc", text = "" },
+    { name = "*.h", text = "" },
+    { name = "*.hpp", text = "" },
+    { name = "*.rs", text = "" },
+    { name = "*.go", text = "" },
+    { name = "*.py", text = "" },
+    { name = "*.js", text = "" },
+    { name = "*.ts", text = "" },
+    { name = "*.html", text = "" },
+    { name = "*.css", text = "" },
+    { name = "*.scss", text = "" },
+    { name = "*.sass", text = "" },
+    { name = "*.json", text = "" },
+    { name = "*.xml", text = "" },
+    { name = "*.yaml", text = "" },
+    { name = "*.yml", text = "" },
+    { name = "*.toml", text = "" },
+    { name = "*.ini", text = "" },
+    { name = "*.conf", text = "" },
+    { name = "*.sh", text = "" },
+    { name = "*.bash", text = "" },
+    { name = "*.zsh", text = "" },
+    { name = "*.fish", text = "" },
+    { name = "*.vim", text = "" },
+    { name = "*.lua", text = "" },
+    { name = "*.rb", text = "" },
+    { name = "*.php", text = "" },
+    { name = "*.java", text = "" },
+    { name = "*.class", text = "" },
+    { name = "*.jar", text = "" },
+    
+    # Archives
+    { name = "*.zip", text = "" },
+    { name = "*.tar", text = "" },
+    { name = "*.gz", text = "" },
+    { name = "*.bz2", text = "" },
+    { name = "*.xz", text = "" },
+    { name = "*.7z", text = "" },
+    { name = "*.rar", text = "" },
+    { name = "*.deb", text = "" },
+    { name = "*.rpm", text = "" },
+    
+    # Images
+    { name = "*.png", text = "" },
+    { name = "*.jpg", text = "" },
+    { name = "*.jpeg", text = "" },
+    { name = "*.gif", text = "" },
+    { name = "*.bmp", text = "" },
+    { name = "*.ico", text = "" },
+    { name = "*.svg", text = "" },
+    { name = "*.webp", text = "" },
+    
+    # Videos
+    { name = "*.mp4", text = "" },
+    { name = "*.mkv", text = "" },
+    { name = "*.webm", text = "" },
+    { name = "*.avi", text = "" },
+    { name = "*.mov", text = "" },
+    { name = "*.wmv", text = "" },
+    { name = "*.flv", text = "" },
+    
+    # Audio
+    { name = "*.mp3", text = "" },
+    { name = "*.flac", text = "" },
+    { name = "*.wav", text = "" },
+    { name = "*.ogg", text = "" },
+    { name = "*.m4a", text = "" },
+    { name = "*.wma", text = "" },
+    
+    # Documents
+    { name = "*.pdf", text = "" },
+    { name = "*.doc", text = "" },
+    { name = "*.docx", text = "" },
+    { name = "*.xls", text = "" },
+    { name = "*.xlsx", text = "" },
+    { name = "*.ppt", text = "" },
+    { name = "*.pptx", text = "" },
+    { name = "*.odt", text = "" },
+    { name = "*.ods", text = "" },
+    { name = "*.odp", text = "" },
+    { name = "*.epub", text = "" },
+    
+    # Text
+    { name = "*.txt", text = "" },
+    { name = "*.md", text = "" },
+    { name = "*.markdown", text = "" },
+    { name = "*.rst", text = "" },
+    
+    # Special files
+    { name = "Makefile", text = "" },
+    { name = "Dockerfile", text = "" },
+    { name = "docker-compose.yml", text = "" },
+    { name = ".gitignore", text = "" },
+    { name = ".gitattributes", text = "" },
+    { name = ".gitmodules", text = "" },
+    { name = "LICENSE", text = "" },
+    { name = "README.md", text = "" },
+    { name = "README", text = "" },
+    { name = "CHANGELOG.md", text = "" },
+    { name = "CHANGELOG", text = "" },
+    
+    # Directories
+    { name = "*/", text = "" },
+    { name = ".git/", text = "" },
+    { name = ".github/", text = "" },
+    { name = "node_modules/", text = "" },
+    { name = ".vscode/", text = "" },
+    { name = ".idea/", text = "" },
+    
+    # Default
+    { name = "*", text = "" },
+]
