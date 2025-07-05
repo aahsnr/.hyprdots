@@ -4,10 +4,10 @@ source $HOME/.cargo/env
 
 source $HOME/.config/zsh/atuin.zsh
 source $HOME/.config/zsh/bat.zsh
-# source $HOME/.config/zsh/eza.zsh
-# source $HOME/.config/zsh/fzf.zsh
+source $HOME/.config/zsh/eza.zsh
+source $HOME/.config/zsh/fzf.zsh
 # source $HOME/.config/fzf/fzf.fedora
-# source $HOME/.config/zsh/ripgrep.zsh
+source $HOME/.config/zsh/ripgrep.zsh
 source $HOME/.config/zsh/starship.zsh
 # source $HOME/.config/zsh/tealdeer.zsh
 # source $HOME/.config/zsh/thefuck.zsh
@@ -193,95 +193,95 @@ function zvm_after_init() {
 
 # ===== Abbreviations System =====
 # Improved abbreviations system
-declare -A abbrs=(
-  # Git abbreviations
-  [g]="git"
-  [ga]="git add"
-  [gaa]="git add --all"
-  [gc]="git commit"
-  [gca]="git commit --amend"
-  [gcm]="git commit -m"
-  [gco]="git checkout"
-  [gd]="git diff"
-  [gl]="git pull"
-  [gp]="git push"
-  [gs]="git status"
-  [gst]="git status"
-  [glog]="git log --oneline --graph --decorate"
-  
-  # File operations
-  [ll]="eza -l --group-directories-first --header --git --icons"
-  [la]="eza -la --group-directories-first --header --git --icons"
-  [v]="nvim"
-  [vim]="nvim"
-  [c]="clear"
-  [e]="exit"
-  [md]="mkdir -p"
-  [rd]="rmdir"
-  
-  # Fedora package management
-  [dnfi]="sudo dnf install"
-  [dnfu]="sudo dnf update"
-  [dnfs]="dnf search"
-  [dnfr]="sudo dnf remove"
-  [dnfq]="dnf info"
-  [dnfl]="dnf list"
-  [dnfh]="dnf history"
-  
-  # Systemd
-  [sctl]="systemctl"
-  [sctle]="sudo systemctl enable"
-  [sctld]="sudo systemctl disable"
-  [sctls]="sudo systemctl start"
-  [sctlr]="sudo systemctl restart"
-  [sctlS]="sudo systemctl stop"
-  [sctlq]="systemctl status"
-  
-  # Flatpak
-  [fp]="flatpak"
-  [fpi]="flatpak install"
-  [fpu]="flatpak update"
-  [fpr]="flatpak uninstall"
-  [fps]="flatpak search"
-  [fpl]="flatpak list"
-)
+# declare -A abbrs=(
+#   # Git abbreviations
+#   [g]="git"
+#   [ga]="git add"
+#   [gaa]="git add --all"
+#   [gc]="git commit"
+#   [gca]="git commit --amend"
+#   [gcm]="git commit -m"
+#   [gco]="git checkout"
+#   [gd]="git diff"
+#   [gl]="git pull"
+#   [gp]="git push"
+#   [gs]="git status"
+#   [gst]="git status"
+#   [glog]="git log --oneline --graph --decorate"
+#
+#   # File operations
+#   [ll]="eza -l --group-directories-first --header --git --icons"
+#   [la]="eza -la --group-directories-first --header --git --icons"
+#   [v]="nvim"
+#   [vim]="nvim"
+#   [c]="clear"
+#   [e]="exit"
+#   [md]="mkdir -p"
+#   [rd]="rmdir"
+#
+#   # Fedora package management
+#   [dnfi]="sudo dnf install"
+#   [dnfu]="sudo dnf update"
+#   [dnfs]="dnf search"
+#   [dnfr]="sudo dnf remove"
+#   [dnfq]="dnf info"
+#   [dnfl]="dnf list"
+#   [dnfh]="dnf history"
+#
+#   # Systemd
+#   [sctl]="systemctl"
+#   [sctle]="sudo systemctl enable"
+#   [sctld]="sudo systemctl disable"
+#   [sctls]="sudo systemctl start"
+#   [sctlr]="sudo systemctl restart"
+#   [sctlS]="sudo systemctl stop"
+#   [sctlq]="systemctl status"
+#
+#   # Flatpak
+#   [fp]="flatpak"
+#   [fpi]="flatpak install"
+#   [fpu]="flatpak update"
+#   [fpr]="flatpak uninstall"
+#   [fps]="flatpak search"
+#   [fpl]="flatpak list"
+# )
 
 # Abbreviation expansion function
-magic-abbrev-expand() {
-  local MATCH
-  LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
-  local expansion=${abbrs[$MATCH]}
-  LBUFFER+=${expansion:-$MATCH}
-  
-  if [[ -n "$expansion" ]]; then
-    zle self-insert
-    return 0
-  fi
-  
-  zle self-insert
-}
-
-magic-abbrev-expand-and-accept() {
-  local MATCH
-  LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
-  local expansion=${abbrs[$MATCH]}
-  LBUFFER+=${expansion:-$MATCH}
-  zle accept-line
-}
-
-no-magic-abbrev-expand() {
-  LBUFFER+=' '
-}
-
-zle -N magic-abbrev-expand
-zle -N magic-abbrev-expand-and-accept
-zle -N no-magic-abbrev-expand
-
-bindkey " " magic-abbrev-expand
-bindkey "^M" magic-abbrev-expand-and-accept
-bindkey "^x " no-magic-abbrev-expand
-bindkey -M isearch " " self-insert
-
+# magic-abbrev-expand() {
+#   local MATCH
+#   LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
+#   local expansion=${abbrs[$MATCH]}
+#   LBUFFER+=${expansion:-$MATCH}
+#
+#   if [[ -n "$expansion" ]]; then
+#     zle self-insert
+#     return 0
+#   fi
+#
+#   zle self-insert
+# }
+#
+# magic-abbrev-expand-and-accept() {
+#   local MATCH
+#   LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
+#   local expansion=${abbrs[$MATCH]}
+#   LBUFFER+=${expansion:-$MATCH}
+#   zle accept-line
+# }
+#
+# no-magic-abbrev-expand() {
+#   LBUFFER+=' '
+# }
+#
+# zle -N magic-abbrev-expand
+# zle -N magic-abbrev-expand-and-accept
+# zle -N no-magic-abbrev-expand
+#
+# bindkey " " magic-abbrev-expand
+# bindkey "^M" magic-abbrev-expand-and-accept
+# bindkey "^x " no-magic-abbrev-expand
+# bindkey -M isearch " " self-insert
+#
 
 # ===== Plugin Configuration =====
 # ZSH Autosuggestions
