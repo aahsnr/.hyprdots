@@ -7,7 +7,7 @@
 source $HOME/.config/zsh/starship.zsh
 # source $HOME/.config/zsh/tealdeer.zsh
 # source $HOME/.config/zsh/thefuck.zsh
-# source $HOME/.config/zsh/tmux.zsh
+source $HOME/.config/zsh/tmux.zsh
 # source $HOME/.config/zsh/yazi.zsh
 source $HOME/.config/zsh/zoxide.zsh
 
