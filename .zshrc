@@ -1,19 +1,19 @@
-source $HOME/.config/zsh/atuin.zsh
-source $HOME/.config/zsh/bat.zsh
-source $HOME/.config/zsh/eza.zsh
-source $HOME/.config/zsh/fzf.zsh
-source $HOME/.config/fzf/fzf.fedora
-source $HOME/.config/zsh/ripgrep.zsh
+# source $HOME/.config/zsh/atuin.zsh
+# source $HOME/.config/zsh/bat.zsh
+# source $HOME/.config/zsh/eza.zsh
+# source $HOME/.config/zsh/fzf.zsh
+# source $HOME/.config/fzf/fzf.fedora
+# source $HOME/.config/zsh/ripgrep.zsh
 source $HOME/.config/zsh/starship.zsh
-source $HOME/.config/zsh/tealdeer.zsh
-source $HOME/.config/zsh/thefuck.zsh
-source $HOME/.config/zsh/tmux.zsh
-source $HOME/.config/zsh/yazi.zsh
-source $HOME/.config/zsh/zoxide.zsh
+# source $HOME/.config/zsh/tealdeer.zsh
+# source $HOME/.config/zsh/thefuck.zsh
+# source $HOME/.config/zsh/tmux.zsh
+# source $HOME/.config/zsh/yazi.zsh
+# source $HOME/.config/zsh/zoxide.zsh
 
 source $HOME/.config/zsh/export.zsh
 source $HOME/.config/zsh/aliases.zsh
-. "$HOME/.cargo/env"
+source $HOME/.cargo/env
 
 
 # ===== History Configuration =====
@@ -132,14 +132,28 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %d --%f'
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' rehash true
 
+# Menu select bindings (set up after completion system)
+# if [[ -n "${terminfo[smkx]}" ]] && [[ -n "${terminfo[rmkx]}" ]]; then
+#   autoload -Uz add-zsh-hook
+#   function _setup_menuselect_keys() {
+#     bindkey -M menuselect 'h' vi-backward-char
+#     bindkey -M menuselect 'k' vi-up-line-or-history
+#     bindkey -M menuselect 'l' vi-forward-char
+#     bindkey -M menuselect 'j' vi-down-line-or-history
+#     bindkey -M menuselect '^M' accept-line
+#     bindkey -M menuselect '^[[Z' reverse-menu-complete
+#   }
+#   add-zsh-hook precmd _setup_menuselect_keys
+# fi
+
 # fzf-tab configuration
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:*' fzf-flags \
   --height=50% \
   --border=rounded \
-  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6ac,pointer:#f5e0dc \
-  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6ac,hl+:#f38ba8
+  '--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8' \
+  '--color=fg:#cdd6f4,header:#f38ba8,info:#cba6ac,pointer:#f5e0dc' \
+  '--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6ac,hl+:#f38ba8'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # Add preview for files and directories
@@ -150,8 +164,8 @@ zstyle ':fzf-tab:complete:*' fzf-preview \
 # zsh-vi-mode configuration
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-ZVM_VI_HIGHLIGHT_BACKGROUND=#313244
-ZVM_VI_HIGHLIGHT_FOREGROUND=#cdd6f4
+ZVM_VI_HIGHLIGHT_BACKGROUND='#313244'
+ZVM_VI_HIGHLIGHT_FOREGROUND='#cdd6f4'
 
 # Configure vi mode after initialization
 function zvm_after_init() {
@@ -169,12 +183,6 @@ function zvm_after_init() {
   bindkey -M viins "^U" backward-kill-line
   bindkey -M viins "^A" beginning-of-line
   bindkey -M viins "^E" end-of-line
-  
-  # Menu select bindings
-  bindkey -M menuselect 'h' vi-backward-char
-  bindkey -M menuselect 'k' vi-up-line-or-history
-  bindkey -M menuselect 'l' vi-forward-char
-  bindkey -M menuselect 'j' vi-down-line-or-history
   
   # Enable FZF bindings after zsh-vi-mode
   if [[ -f /usr/share/fzf/shell/key-bindings.zsh ]]; then
@@ -322,4 +330,3 @@ dnf-info() { dnf info "$1"; }
 # ===== Local Configuration =====
 # Source local configuration if it exists
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
-
