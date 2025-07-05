@@ -6,7 +6,7 @@ source $HOME/.config/zsh/atuin.zsh
 source $HOME/.config/zsh/bat.zsh
 source $HOME/.config/zsh/eza.zsh
 source $HOME/.config/zsh/fzf.zsh
-# source $HOME/.config/fzf/fzf.fedora
+source $HOME/.config/fzf/fzf.fedora
 source $HOME/.config/zsh/ripgrep.zsh
 source $HOME/.config/zsh/starship.zsh
 source $HOME/.config/zsh/tealdeer.zsh
