@@ -29,9 +29,64 @@ base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
 
-# Performance optimization
-command_timeout = 1000
+# Performance optimization - FIXED timeout values
+command_timeout = 10000  # Increased from 1000ms to 5000ms (5 seconds)
 scan_timeout = 30
+
+# Add format to control prompt order and layout
+format = """
+$os\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_commit\
+$package\
+$c\
+$cmake\
+$cobol\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$python\
+$ruby\
+$rust\
+$scala\
+$swift\
+$zig\
+$bun\
+$container\
+$docker_context\
+$kubernetes\
+$terraform\
+$vagrant\
+$aws\
+$azure\
+$gcloud\
+$memory_usage\
+$jobs\
+$battery\
+$time\
+$status\
+$cmd_duration\
+$custom\
+$line_break\
+$character"""
 
 # Main prompt configuration
 [character]
@@ -375,10 +430,10 @@ disabled = true
 [line_break]
 disabled = false
 
-# Custom modules for Fedora (CORRECTED)
+# Custom modules for Fedora - FIXED with better error handling
 [custom.dnf_updates]
-command = "dnf check-update --quiet 2>/dev/null | grep -c '^[^[:space:]]' || echo 0"
-when = "command -v dnf"
+command = "timeout 3s dnf check-update --quiet 2>/dev/null | grep -c '^[^[:space:]]' || echo 0"
+when = "command -v dnf >/dev/null 2>&1"
 format = "[$symbol$output]($style) "
 symbol = "󰮯 "
 style = "bold red"
@@ -386,8 +441,8 @@ shell = ["bash", "--noprofile", "--norc"]
 description = "Show DNF package updates"
 
 [custom.flatpak_updates]
-command = "flatpak remote-ls --updates 2>/dev/null | wc -l"
-when = "command -v flatpak"
+command = "timeout 3s flatpak remote-ls --updates 2>/dev/null | wc -l || echo 0"
+when = "command -v flatpak >/dev/null 2>&1"
 format = "[$symbol$output]($style) "
 symbol = "󰏖 "
 style = "bold blue"
@@ -395,8 +450,8 @@ shell = ["bash", "--noprofile", "--norc"]
 description = "Show Flatpak updates"
 
 [custom.podman_status]
-command = "podman ps --format '{{.Names}}' 2>/dev/null | wc -l"
-when = "command -v podman"
+command = "timeout 2s podman ps --format '{{.Names}}' 2>/dev/null | wc -l || echo 0"
+when = "command -v podman >/dev/null 2>&1"
 format = "[$symbol$output]($style) "
 symbol = " "
 style = "bold purple"
@@ -404,8 +459,8 @@ shell = ["bash", "--noprofile", "--norc"]
 description = "Show running Podman containers"
 
 [custom.selinux]
-command = "getenforce 2>/dev/null || echo 'N/A'"
-when = "command -v getenforce"
+command = "timeout 1s getenforce 2>/dev/null || echo 'N/A'"
+when = "command -v getenforce >/dev/null 2>&1"
 format = "[$symbol$output]($style) "
 symbol = "🛡️ "
 style = "bold green"
@@ -413,8 +468,8 @@ shell = ["bash", "--noprofile", "--norc"]
 description = "Show SELinux status"
 
 [custom.rpm_count]
-command = "rpm -qa 2>/dev/null | wc -l"
-when = "command -v rpm"
+command = "timeout 2s rpm -qa 2>/dev/null | wc -l || echo 0"
+when = "command -v rpm >/dev/null 2>&1"
 format = "[$symbol$output]($style) "
 symbol = " "
 style = "bold red"
