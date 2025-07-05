@@ -13,14 +13,6 @@ gui:
       - '#313244'  # Catppuccin Mocha Surface0
     selectedRangeBgColor:
       - '#313244'  # Catppuccin Mocha Surface0
-    cherryPickedCommitBgColor:
-      - '#313244'  # Catppuccin Mocha Surface0
-    cherryPickedCommitFgColor:
-      - '#a6e3a1'  # Catppuccin Mocha Green
-    unstagedChangesColor:
-      - '#f38ba8'  # Catppuccin Mocha Red
-    defaultFgColor:
-      - '#cdd6f4'  # Catppuccin Mocha Text
     searchingActiveBorderColor:
       - '#fab387'  # Catppuccin Mocha Peach
     cherryPickedCommitBgColor:
@@ -307,7 +299,7 @@ notARepository: 'prompt'
 # Custom commands for enhanced AstroNvim integration
 customCommands:
   # Quick commit amendments
-  - key: 'e'
+  - key: 'E'
     command: 'git commit --amend --no-edit'
     context: 'commits'
     description: 'Amend commit without editing message'
@@ -315,13 +307,13 @@ customCommands:
   
   # Open files in AstroNvim
   - key: 'n'
-    command: 'nvim {{filename}}'
+    command: 'nvim {{.SelectedFile.Name}}'
     context: 'files'
     description: 'Open file in AstroNvim'
     subprocess: true
   
-  # Advanced AstroNvim integration
-  - key: 'N'
+  # Advanced AstroNvim integration - global telescope git files
+  - key: 'T'
     command: 'nvim -c "lua require(\"telescope.builtin\").git_files()"'
     context: 'global'
     description: 'Open AstroNvim with Telescope git files'
@@ -329,22 +321,22 @@ customCommands:
   
   # View file history in AstroNvim
   - key: 'H'
-    command: 'nvim -c "lua require(\"telescope.builtin\").git_bcommits()"'
+    command: 'nvim -c "lua require(\"telescope.builtin\").git_bcommits()" {{.SelectedFile.Name}}'
     context: 'files'
     description: 'View file history with Telescope'
     subprocess: true
   
   # Interactive rebase with AstroNvim
   - key: 'I'
-    command: 'git rebase -i {{.CheckedOutBranch.Name}}~{{.SelectedLocalCommit.Sha}}'
+    command: 'git rebase -i {{.SelectedLocalCommit.Sha}}^'
     context: 'commits'
     description: 'Interactive rebase from selected commit'
     subprocess: true
   
-  # Create new branch with AstroNvim telescope
+  # Browse branches with AstroNvim telescope (fixed context)
   - key: 'B'
     command: 'nvim -c "lua require(\"telescope.builtin\").git_branches()"'
-    context: 'branches'
+    context: 'localBranches'
     description: 'Browse branches with Telescope'
     subprocess: true
   
@@ -357,7 +349,7 @@ customCommands:
   
   # View diff in AstroNvim
   - key: 'D'
-    command: 'nvim -c "Gvdiffsplit" {{filename}}'
+    command: 'nvim -c "Gvdiffsplit" {{.SelectedFile.Name}}'
     context: 'files'
     description: 'View diff in AstroNvim with fugitive'
     subprocess: true
@@ -380,6 +372,60 @@ customCommands:
         title: 'Stash Message'
         initialValue: 'WIP: '
     stream: true
+  
+  # Open current repo in AstroNvim
+  - key: 'o'
+    command: 'nvim .'
+    context: 'global'
+    description: 'Open current repository in AstroNvim'
+    subprocess: true
+  
+  # Git blame in AstroNvim
+  - key: 'b'
+    command: 'nvim -c "Git blame" {{.SelectedFile.Name}}'
+    context: 'files'
+    description: 'View git blame in AstroNvim'
+    subprocess: true
+  
+  # View stash content in AstroNvim
+  - key: 'v'
+    command: 'nvim -c "G stash show -p {{.SelectedStashEntry.Index}}"'
+    context: 'stash'
+    description: 'View stash content in AstroNvim'
+    subprocess: true
+  
+  # Open merge tool in AstroNvim
+  - key: 'M'
+    command: 'nvim -c "Gvdiffsplit!" {{.SelectedFile.Name}}'
+    context: 'files'
+    description: 'Open merge tool in AstroNvim'
+    subprocess: true
+  
+  # Create branch with input
+  - key: 'N'
+    command: 'git checkout -b {{.Form.BranchName}}'
+    context: 'localBranches'
+    description: 'Create new branch'
+    prompts:
+      - type: 'input'
+        key: 'BranchName'
+        title: 'Branch Name'
+        initialValue: 'feature/'
+    stream: true
+  
+  # Cherry pick with edit
+  - key: 'C'
+    command: 'git cherry-pick --edit {{.SelectedLocalCommit.Sha}}'
+    context: 'commits'
+    description: 'Cherry pick with edit'
+    subprocess: true
+  
+  # View remote branches with telescope
+  - key: 'R'
+    command: 'nvim -c "lua require(\"telescope.builtin\").git_branches({show_remote_tracking_branches=true})"'
+    context: 'remoteBranches'
+    description: 'Browse remote branches with Telescope'
+    subprocess: true
 
 # AstroNvim specific services configuration
 services:
