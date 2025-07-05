@@ -2,7 +2,7 @@
 eval "$(starship init zsh)"
 
 # Fedora-specific optimizations
-export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # Zsh completion cache
 zstyle ':completion:*' use-cache on
