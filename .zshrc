@@ -3,7 +3,7 @@ source $HOME/.config/zsh/aliases.zsh
 source $HOME/.cargo/env
 
 source $HOME/.config/zsh/atuin.zsh
-# source $HOME/.config/zsh/bat.zsh
+source $HOME/.config/zsh/bat.zsh
 # source $HOME/.config/zsh/eza.zsh
 # source $HOME/.config/zsh/fzf.zsh
 # source $HOME/.config/fzf/fzf.fedora

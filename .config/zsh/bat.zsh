@@ -6,19 +6,27 @@ export BAT_STYLE="numbers,changes,header"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 
+# Git integration with delta - FIXED: Use less instead of bat for delta pager
+export GIT_PAGER="delta"
+export DELTA_PAGER="less -R"
+
 # Useful aliases
 alias cat='bat --paging=never'
-alias batl='bat --paging=always'  # Use batl instead of overriding less
-alias batp='bat --plain'          # Plain output without decorations
+alias batl='bat --paging=always'
+alias batp='bat --plain'
 
 # Fedora-specific aliases
 alias dnf-log='bat /var/log/dnf.log'
 alias dnf-repos='find /etc/yum.repos.d -name "*.repo" -exec bat {} \;'
 alias fedora-release='bat /etc/fedora-release'
 
+# Alternative fd alias if needed
+if command -v fd-find >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
+    alias fd='fd-find'
+fi
+
 # Enhanced functions with git integration
 batgit() {
-    # Add git information to the output
     local git_info=""
     if git rev-parse --git-dir > /dev/null 2>&1; then
         local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
@@ -31,15 +39,7 @@ batgit() {
     bat "$@"
 }
 
-# Fedora-specific utility functions
-dnf-history() {
-    if [[ -f "/var/log/dnf.log" ]]; then
-        bat /var/log/dnf.log --language=log
-    else
-        echo "DNF log file not found"
-    fi
-}
-
+# DNF and RPM related functions
 dnf-rpm-log() {
     if [[ -f "/var/log/dnf.rpm.log" ]]; then
         bat /var/log/dnf.rpm.log --language=log
@@ -55,7 +55,7 @@ spec() {
         return 1
     fi
     if [[ -f "$1" ]]; then
-        bat "$1" --language="RPM Spec"
+        bat "$1" --language=bash
     else
         echo "Spec file not found: $1"
     fi
@@ -68,7 +68,7 @@ changelog() {
         return 1
     fi
     if rpm -q "$1" > /dev/null 2>&1; then
-        rpm -q --changelog "$1" | bat --language=diff --plain
+        rpm -q --changelog "$1" | bat --language=diff --paging=always
     else
         echo "Package not found or not installed: $1"
     fi
@@ -97,10 +97,9 @@ unit() {
         return 1
     fi
     local unit_file
-    # Try to find the unit file
     unit_file=$(systemctl show -p FragmentPath "$1" 2>/dev/null | cut -d= -f2)
     if [[ -n "$unit_file" && -f "$unit_file" ]]; then
-        bat "$unit_file" --language=systemd
+        bat "$unit_file" --language=ini
     else
         echo "Unit file not found for: $1"
     fi
@@ -127,7 +126,7 @@ sepolicy() {
     bat "$policy_file" --language=c
 }
 
-# Function to view Fedora-specific files
+# Function to view Fedora-specific information
 fedora-info() {
     echo "=== Fedora Release Information ==="
     if [[ -f "/etc/fedora-release" ]]; then
@@ -195,26 +194,19 @@ yaml() {
     fi
 }
 
-# Enhanced diff viewing with delta
-export GIT_PAGER="delta"
-export DELTA_PAGER="bat --plain"
-
-
-# Find and view files with bat
+# Find and view files with bat using fzf
 fbat() {
     local file
     if command -v fzf >/dev/null 2>&1; then
-        file=$(fd --type f | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}') && bat "$file"
+        if command -v fd >/dev/null 2>&1; then
+            file=$(fd --type f | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}') && bat "$file"
+        else
+            file=$(find . -type f | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}') && bat "$file"
+        fi
     else
         echo "fzf not installed. Install with: sudo dnf install fzf"
     fi
 }
-
-# Alternative if fd is installed as fd-find
-if command -v fd-find >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
-    alias fd='fd-find'
-fi
-
 
 # Function for large files with minimal styling
 batfast() {
@@ -285,4 +277,88 @@ dnf-config() {
         bat "$repo"
         echo
     done
+}
+
+# Function to view logs with automatic language detection
+viewlog() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: viewlog <log_file>"
+        return 1
+    fi
+    if [[ -f "$1" ]]; then
+        bat "$1" --language=log
+    else
+        echo "Log file not found: $1"
+    fi
+}
+
+# Function to view configuration files with smart language detection
+viewconf() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: viewconf <config_file>"
+        return 1
+    fi
+    if [[ -f "$1" ]]; then
+        case "${1##*.}" in
+            conf|cfg) bat "$1" --language=ini ;;
+            json) bat "$1" --language=json ;;
+            yaml|yml) bat "$1" --language=yaml ;;
+            xml) bat "$1" --language=xml ;;
+            *) bat "$1" ;;
+        esac
+    else
+        echo "Configuration file not found: $1"
+    fi
+}
+
+# Function to view systemd service status and config together
+service-info() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: service-info <service_name>"
+        return 1
+    fi
+    echo "=== Service Status ==="
+    systemctl status "$1" 2>/dev/null || echo "Service status not available"
+    echo -e "\n=== Service Configuration ==="
+    unit "$1"
+}
+
+# Function to compare files side by side
+batdiff() {
+    if [[ $# -ne 2 ]]; then
+        echo "Usage: batdiff <file1> <file2>"
+        return 1
+    fi
+    if [[ -f "$1" && -f "$2" ]]; then
+        diff -u "$1" "$2" | bat --language=diff
+    else
+        echo "One or both files not found: $1, $2"
+    fi
+}
+
+# Function to view git diff with delta and bat syntax highlighting
+gitdiff() {
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+        git diff "$@"
+    else
+        echo "Not in a git repository"
+    fi
+}
+
+# Function to view git log with delta
+gitlog() {
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+        git log --oneline --graph --decorate "$@"
+    else
+        echo "Not in a git repository"
+    fi
+}
+
+# Function to use bat as a replacement for 'less' when viewing regular files
+batless() {
+    if [[ -f "$1" ]]; then
+        bat --paging=always "$1"
+    else
+        echo "File not found: $1"
+    fi
 }
