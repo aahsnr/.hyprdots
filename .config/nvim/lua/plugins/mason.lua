@@ -13,7 +13,6 @@ return {
       ensure_installed = {
         -- install language servers
         "lua-language-server",
-        "hyprls",
         "bash-language-server",
 
         -- install formatters
