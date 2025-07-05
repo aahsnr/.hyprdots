@@ -329,3 +329,4 @@ dnf-info() { dnf info "$1"; }
 # ===== Local Configuration =====
 # Source local configuration if it exists
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

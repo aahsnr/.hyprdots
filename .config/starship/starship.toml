@@ -191,7 +191,7 @@ style = "bold green"
 [aws]
 symbol = "  "
 style = "bold yellow"
-format = "on [$symbol($profile)(\($region\))(\[$duration\])]($style) "
+format = "on [$symbol($profile)(\\($region\\))(\\[$duration\\])]($style) "
 
 [azure]
 symbol = "󰠅 "
@@ -201,12 +201,12 @@ format = "on [$symbol($subscription)]($style) "
 [gcloud]
 symbol = "󱇶 "
 style = "bold blue"
-format = "on [$symbol$account(@$domain)(\($project\))]($style) "
+format = "on [$symbol$account(@$domain)(\\($project\\))]($style) "
 
 [kubernetes]
 symbol = "⎈ "
 style = "bold blue"
-format = "on [$symbol$context( \($namespace\))]($style) "
+format = "on [$symbol$context( \\($namespace\\))]($style) "
 disabled = false
 
 [terraform]
@@ -259,7 +259,7 @@ format = "via [$symbol$version( 🎯 $tfm)]($style) "
 [elixir]
 symbol = " "
 style = "bold mauve"
-format = "via [$symbol$version \(OTP $otp_version\)]($style) "
+format = "via [$symbol$version \\(OTP $otp_version\\)]($style) "
 
 [elm]
 symbol = " "
@@ -310,7 +310,7 @@ detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
 [ocaml]
 symbol = " "
 style = "bold yellow"
-format = "via [$symbol$version(\($switch_indicator$switch_name\))]($style) "
+format = "via [$symbol$version(\\($switch_indicator$switch_name\\))]($style) "
 
 [perl]
 symbol = " "
@@ -325,7 +325,7 @@ format = "via [$symbol$version]($style) "
 [python]
 symbol = " "
 style = "bold blue"
-format = "via [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style) "
+format = "via [${symbol}${pyenv_prefix}(${version})(\\($virtualenv\\))]($style) "
 pyenv_version_name = false
 pyenv_prefix = ""
 
@@ -375,7 +375,7 @@ disabled = true
 [line_break]
 disabled = false
 
-# Custom modules for Fedora (CORRECTED)
+# Custom modules for Fedora
 [custom.dnf_updates]
 command = "dnf check-update --quiet 2>/dev/null | grep -c '^[^[:space:]]' || echo 0"
 when = "command -v dnf"
