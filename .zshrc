@@ -8,7 +8,7 @@ source $HOME/.config/zsh/eza.zsh
 source $HOME/.config/zsh/fzf.zsh
 source $HOME/.config/fzf/fzf.fedora
 source $HOME/.config/zsh/ripgrep.zsh
-#source $HOME/.config/zsh/starship.zsh
+source $HOME/.config/zsh/starship.zsh
 source $HOME/.config/zsh/tealdeer.zsh
 source $HOME/.config/zsh/thefuck.zsh
 source $HOME/.config/zsh/tmux.zsh
@@ -329,4 +329,4 @@ dnf-info() { dnf info "$1"; }
 # ===== Local Configuration =====
 # Source local configuration if it exists
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

@@ -12,3 +12,4 @@ export PATH="$PATH:$HOME/.local/bin/hypr"
 export PATH="$PATH:$HOME/.config/emacs/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
 export LANG="en_US.UTF-8"
+export COLORTERM=truecolor
