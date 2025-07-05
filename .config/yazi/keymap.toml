@@ -1,536 +1,623 @@
-[[manager.prepend_keymap]]
-on   = "h"
-run  = "leave"
-desc = "Go back"
+# Yazi Keymap Configuration
+# This configuration provides vim-like navigation and file management keybindings
 
-[[manager.prepend_keymap]]
-on   = "j"
-run  = "arrow -1"
+# Manager layer - File list navigation and operations
+[[mgr.prepend_keymap]]
+on = "h"
+run = "leave"
+desc = "Go back to parent directory"
+
+[[mgr.prepend_keymap]]
+on = "j"
+run = "arrow 1"
 desc = "Move cursor down"
 
-[[manager.prepend_keymap]]
-on   = "k"
-run  = "arrow 1"
+[[mgr.prepend_keymap]]
+on = "k"
+run = "arrow -1"
 desc = "Move cursor up"
 
-[[manager.prepend_keymap]]
-on   = "l"
-run  = "enter"
+[[mgr.prepend_keymap]]
+on = "l"
+run = "enter"
 desc = "Enter directory"
 
-[[manager.prepend_keymap]]
-on   = [ "g", "g" ]
-run  = "arrow -99999999"
+[[mgr.prepend_keymap]]
+on = [ "g", "g" ]
+run = "arrow top"
 desc = "Move cursor to top"
 
-[[manager.prepend_keymap]]
-on   = [ "G" ]
-run  = "arrow 99999999"
+[[mgr.prepend_keymap]]
+on = "G"
+run = "arrow bot"
 desc = "Move cursor to bottom"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-d>" ]
-run  = "arrow -5"
+[[mgr.prepend_keymap]]
+on = [ "<C-d>" ]
+run = "arrow 5"
 desc = "Move cursor down 5 lines"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-u>" ]
-run  = "arrow 5"
+[[mgr.prepend_keymap]]
+on = [ "<C-u>" ]
+run = "arrow -5"
 desc = "Move cursor up 5 lines"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-f>" ]
-run  = "arrow -10"
+[[mgr.prepend_keymap]]
+on = [ "<C-f>" ]
+run = "arrow 10"
 desc = "Move cursor down 10 lines"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-b>" ]
-run  = "arrow 10"
+[[mgr.prepend_keymap]]
+on = [ "<C-b>" ]
+run = "arrow -10"
 desc = "Move cursor up 10 lines"
 
 # File operations
-[[manager.prepend_keymap]]
-on   = "y"
-run  = "copy"
+[[mgr.prepend_keymap]]
+on = "y"
+run = "yank"
 desc = "Copy selected files"
 
-[[manager.prepend_keymap]]
-on   = "x"
-run  = "cut"
+[[mgr.prepend_keymap]]
+on = "x"
+run = "yank --cut"
 desc = "Cut selected files"
 
-[[manager.prepend_keymap]]
-on   = "d"
-run  = "cut"
+[[mgr.prepend_keymap]]
+on = "d"
+run = "yank --cut"
 desc = "Cut selected files"
 
-[[manager.prepend_keymap]]
-on   = "p"
-run  = "paste"
+[[mgr.prepend_keymap]]
+on = "p"
+run = "paste"
 desc = "Paste files"
 
-[[manager.prepend_keymap]]
-on   = [ "d", "d" ]
-run  = "remove"
+[[mgr.prepend_keymap]]
+on = [ "d", "d" ]
+run = "remove"
 desc = "Remove selected files"
 
-[[manager.prepend_keymap]]
-on   = "v"
-run  = "visual_mode"
+[[mgr.prepend_keymap]]
+on = "v"
+run = "visual_mode"
 desc = "Enter visual mode"
 
-[[manager.prepend_keymap]]
-on   = "V"
-run  = "visual_mode --unset"
+[[mgr.prepend_keymap]]
+on = "V"
+run = "visual_mode --unset"
 desc = "Enter visual mode (unset)"
 
-[[manager.prepend_keymap]]
-on   = "a"
-run  = "create"
+[[mgr.prepend_keymap]]
+on = "a"
+run = "create"
 desc = "Create new file or directory"
 
-[[manager.prepend_keymap]]
-on   = "r"
-run  = "rename --cursor=before_ext"
+[[mgr.prepend_keymap]]
+on = "r"
+run = "rename --cursor=before_ext"
 desc = "Rename selected file"
 
-[[manager.prepend_keymap]]
-on   = "u"
-run  = "undo"
+[[mgr.prepend_keymap]]
+on = "u"
+run = "undo"
 desc = "Undo last operation"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-r>" ]
-run  = "redo"
+[[mgr.prepend_keymap]]
+on = [ "<C-r>" ]
+run = "redo"
 desc = "Redo last operation"
 
-[[manager.prepend_keymap]]
-on   = "c"
-run  = "cd"
+[[mgr.prepend_keymap]]
+on = "c"
+run = "cd --interactive"
 desc = "Change directory"
 
-[[manager.prepend_keymap]]
-on   = "o"
-run  = "open"
+[[mgr.prepend_keymap]]
+on = "o"
+run = "open"
 desc = "Open file"
 
-[[manager.prepend_keymap]]
-on   = "O"
-run  = "open --interactive"
+[[mgr.prepend_keymap]]
+on = "O"
+run = "open --interactive"
 desc = "Open file interactively"
 
 # Search and find
-[[manager.prepend_keymap]]
-on   = "/"
-run  = "find --smart"
+[[mgr.prepend_keymap]]
+on = "/"
+run = "find --smart"
 desc = "Find files"
 
-[[manager.prepend_keymap]]
-on   = "n"
-run  = "find_arrow"
+[[mgr.prepend_keymap]]
+on = "n"
+run = "find_arrow"
 desc = "Go to next found file"
 
-[[manager.prepend_keymap]]
-on   = "N"
-run  = "find_arrow --previous"
+[[mgr.prepend_keymap]]
+on = "N"
+run = "find_arrow --previous"
 desc = "Go to previous found file"
 
-[[manager.prepend_keymap]]
-on   = "f"
-run  = "filter --smart"
+[[mgr.prepend_keymap]]
+on = "f"
+run = "filter --smart"
 desc = "Filter files"
 
 # Selection
-[[manager.prepend_keymap]]
-on   = "<Space>"
-run  = "select --state=none"
+[[mgr.prepend_keymap]]
+on = "<Space>"
+run = "toggle"
 desc = "Toggle selection"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-a>" ]
-run  = "select_all --state=true"
+[[mgr.prepend_keymap]]
+on = [ "<C-a>" ]
+run = "toggle_all --state=on"
 desc = "Select all files"
 
-[[manager.prepend_keymap]]
-on   = [ "g", "r" ]
-run  = "select_all --state=false"
+[[mgr.prepend_keymap]]
+on = [ "g", "r" ]
+run = "toggle_all --state=off"
 desc = "Deselect all files"
 
-[[manager.prepend_keymap]]
-on   = [ "g", "t" ]
-run  = "select_all --state=none"
+[[mgr.prepend_keymap]]
+on = [ "g", "t" ]
+run = "toggle_all"
 desc = "Toggle selection for all files"
 
 # Tabs
-[[manager.prepend_keymap]]
-on   = "t"
-run  = "tab_create --current"
+[[mgr.prepend_keymap]]
+on = "t"
+run = "tab_create --current"
 desc = "Create new tab"
 
-[[manager.prepend_keymap]]
-on   = "T"
-run  = "tab_close 0"
+[[mgr.prepend_keymap]]
+on = "T"
+run = "tab_close 0"
 desc = "Close current tab"
 
-[[manager.prepend_keymap]]
-on   = "w"
-run  = "tab_close 0"
+[[mgr.prepend_keymap]]
+on = "w"
+run = "tab_close 0"
 desc = "Close current tab"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-t>" ]
-run  = "tab_create --current"
+[[mgr.prepend_keymap]]
+on = [ "<C-t>" ]
+run = "tab_create --current"
 desc = "Create new tab"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-w>" ]
-run  = "tab_close 0"
+[[mgr.prepend_keymap]]
+on = [ "<C-w>" ]
+run = "tab_close 0"
 desc = "Close current tab"
 
-[[manager.prepend_keymap]]
-on   = "["
-run  = "tab_switch -1 --relative"
+[[mgr.prepend_keymap]]
+on = "["
+run = "tab_switch -1 --relative"
 desc = "Switch to previous tab"
 
-[[manager.prepend_keymap]]
-on   = "]"
-run  = "tab_switch 1 --relative"
+[[mgr.prepend_keymap]]
+on = "]"
+run = "tab_switch 1 --relative"
 desc = "Switch to next tab"
 
-[[manager.prepend_keymap]]
-on   = [ "g", "T" ]
-run  = "tab_switch -1 --relative"
+[[mgr.prepend_keymap]]
+on = [ "g", "T" ]
+run = "tab_switch -1 --relative"
 desc = "Switch to previous tab"
 
-[[manager.prepend_keymap]]
-on   = [ "g", "t" ]
-run  = "tab_switch 1 --relative"
+[[mgr.prepend_keymap]]
+on = [ "g", "t" ]
+run = "tab_switch 1 --relative"
 desc = "Switch to next tab"
 
-[[manager.prepend_keymap]]
-on   = "{"
-run  = "tab_swap -1"
+[[mgr.prepend_keymap]]
+on = "{"
+run = "tab_swap -1"
 desc = "Swap current tab with previous"
 
-[[manager.prepend_keymap]]
-on   = "}"
-run  = "tab_swap 1"
+[[mgr.prepend_keymap]]
+on = "}"
+run = "tab_swap 1"
 desc = "Swap current tab with next"
 
 # Tab switching with numbers
-[[manager.prepend_keymap]]
-on   = "1"
-run  = "tab_switch 0"
+[[mgr.prepend_keymap]]
+on = "1"
+run = "tab_switch 0"
 desc = "Switch to tab 1"
 
-[[manager.prepend_keymap]]
-on   = "2"
-run  = "tab_switch 1"
+[[mgr.prepend_keymap]]
+on = "2"
+run = "tab_switch 1"
 desc = "Switch to tab 2"
 
-[[manager.prepend_keymap]]
-on   = "3"
-run  = "tab_switch 2"
+[[mgr.prepend_keymap]]
+on = "3"
+run = "tab_switch 2"
 desc = "Switch to tab 3"
 
-[[manager.prepend_keymap]]
-on   = "4"
-run  = "tab_switch 3"
+[[mgr.prepend_keymap]]
+on = "4"
+run = "tab_switch 3"
 desc = "Switch to tab 4"
 
-[[manager.prepend_keymap]]
-on   = "5"
-run  = "tab_switch 4"
+[[mgr.prepend_keymap]]
+on = "5"
+run = "tab_switch 4"
 desc = "Switch to tab 5"
 
-[[manager.prepend_keymap]]
-on   = "6"
-run  = "tab_switch 5"
+[[mgr.prepend_keymap]]
+on = "6"
+run = "tab_switch 5"
 desc = "Switch to tab 6"
 
-[[manager.prepend_keymap]]
-on   = "7"
-run  = "tab_switch 6"
+[[mgr.prepend_keymap]]
+on = "7"
+run = "tab_switch 6"
 desc = "Switch to tab 7"
 
-[[manager.prepend_keymap]]
-on   = "8"
-run  = "tab_switch 7"
+[[mgr.prepend_keymap]]
+on = "8"
+run = "tab_switch 7"
 desc = "Switch to tab 8"
 
-[[manager.prepend_keymap]]
-on   = "9"
-run  = "tab_switch 8"
+[[mgr.prepend_keymap]]
+on = "9"
+run = "tab_switch 8"
 desc = "Switch to tab 9"
 
 # Directory navigation
-[[manager.prepend_keymap]]
-on   = "~"
-run  = "cd ~"
+[[mgr.prepend_keymap]]
+on = "~"
+run = "cd ~"
 desc = "Go to home directory"
 
-[[manager.prepend_keymap]]
-on   = "-"
-run  = "leave"
+[[mgr.prepend_keymap]]
+on = "-"
+run = "leave"
 desc = "Go to parent directory"
 
 # Miscellaneous
-[[manager.prepend_keymap]]
-on   = "q"
-run  = "quit"
+[[mgr.prepend_keymap]]
+on = "q"
+run = "quit"
 desc = "Quit yazi"
 
-[[manager.prepend_keymap]]
-on   = "Q"
-run  = "quit --no-cwd-file"
+[[mgr.prepend_keymap]]
+on = "Q"
+run = "quit --no-cwd-file"
 desc = "Quit yazi without saving cwd"
 
-[[manager.prepend_keymap]]
-on   = ":"
-run  = "shell --interactive"
+[[mgr.prepend_keymap]]
+on = ":"
+run = "shell --interactive"
 desc = "Run shell command"
 
-[[manager.prepend_keymap]]
-on   = "!"
-run  = "shell --block"
+[[mgr.prepend_keymap]]
+on = "!"
+run = "shell --block"
 desc = "Run shell command and wait"
 
-[[manager.prepend_keymap]]
-on   = "?"
-run  = "help"
+[[mgr.prepend_keymap]]
+on = "?"
+run = "help"
 desc = "Show help"
 
-[[manager.prepend_keymap]]
-on   = "<Esc>"
-run  = "escape"
+[[mgr.prepend_keymap]]
+on = "<Esc>"
+run = "escape"
 desc = "Exit current mode"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-l>" ]
-run  = "refresh"
+[[mgr.prepend_keymap]]
+on = [ "<C-l>" ]
+run = "refresh"
 desc = "Refresh current directory"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-h>" ]
-run  = "toggle hidden"
+[[mgr.prepend_keymap]]
+on = [ "<C-h>" ]
+run = "hidden toggle"
 desc = "Toggle hidden files"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-s>" ]
-run  = "peek"
+[[mgr.prepend_keymap]]
+on = [ "<C-s>" ]
+run = "spot"
 desc = "Peek file content"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-z>" ]
-run  = "suspend"
+[[mgr.prepend_keymap]]
+on = [ "<C-z>" ]
+run = "suspend"
 desc = "Suspend yazi"
 
-[[manager.prepend_keymap]]
-on   = "i"
-run  = "inspect"
+[[mgr.prepend_keymap]]
+on = "i"
+run = "spot"
 desc = "Inspect file"
 
-[[manager.prepend_keymap]]
-on   = "R"
-run  = "refresh"
+[[mgr.prepend_keymap]]
+on = "R"
+run = "refresh"
 desc = "Refresh current directory"
 
 # Sorting
-[[manager.prepend_keymap]]
-on   = [ "s", "n" ]
-run  = "sort natural"
+[[mgr.prepend_keymap]]
+on = [ "s", "n" ]
+run = "sort natural"
 desc = "Sort naturally"
 
-[[manager.prepend_keymap]]
-on   = [ "s", "s" ]
-run  = "sort size"
+[[mgr.prepend_keymap]]
+on = [ "s", "s" ]
+run = "sort size"
 desc = "Sort by size"
 
-[[manager.prepend_keymap]]
-on   = [ "s", "m" ]
-run  = "sort modified"
+[[mgr.prepend_keymap]]
+on = [ "s", "m" ]
+run = "sort mtime"
 desc = "Sort by modified time"
 
-[[manager.prepend_keymap]]
-on   = [ "s", "c" ]
-run  = "sort created"
+[[mgr.prepend_keymap]]
+on = [ "s", "c" ]
+run = "sort btime"
 desc = "Sort by created time"
 
-[[manager.prepend_keymap]]
-on   = [ "s", "e" ]
-run  = "sort extension"
+[[mgr.prepend_keymap]]
+on = [ "s", "e" ]
+run = "sort extension"
 desc = "Sort by extension"
 
-[[manager.prepend_keymap]]
-on   = [ "s", "r" ]
-run  = "sort reverse"
+[[mgr.prepend_keymap]]
+on = [ "s", "r" ]
+run = "sort reverse"
 desc = "Reverse sort order"
 
 # Input mode keybindings
 [[input.prepend_keymap]]
-on   = "<Esc>"
-run  = "close"
+on = "<Esc>"
+run = "close"
 desc = "Cancel input"
 
 [[input.prepend_keymap]]
-on   = [ "<C-c>" ]
-run  = "close"
+on = [ "<C-c>" ]
+run = "close"
 desc = "Cancel input"
 
 [[input.prepend_keymap]]
-on   = [ "<C-n>" ]
-run  = "move 1"
+on = [ "<C-n>" ]
+run = "move 1"
 desc = "Move cursor down in history"
 
 [[input.prepend_keymap]]
-on   = [ "<C-p>" ]
-run  = "move -1"
+on = [ "<C-p>" ]
+run = "move -1"
 desc = "Move cursor up in history"
 
 [[input.prepend_keymap]]
-on   = [ "<C-f>" ]
-run  = "forward"
+on = [ "<C-f>" ]
+run = "forward"
 desc = "Move cursor forward"
 
 [[input.prepend_keymap]]
-on   = [ "<C-b>" ]
-run  = "backward"
+on = [ "<C-b>" ]
+run = "backward"
 desc = "Move cursor backward"
 
 [[input.prepend_keymap]]
-on   = [ "<C-a>" ]
-run  = "move -999"
+on = [ "<C-a>" ]
+run = "move -999"
 desc = "Move cursor to start"
 
 [[input.prepend_keymap]]
-on   = [ "<C-e>" ]
-run  = "move 999"
+on = [ "<C-e>" ]
+run = "move 999"
 desc = "Move cursor to end"
 
 [[input.prepend_keymap]]
-on   = [ "<C-u>" ]
-run  = "kill bol"
+on = [ "<C-u>" ]
+run = "kill bol"
 desc = "Kill from cursor to beginning of line"
 
 [[input.prepend_keymap]]
-on   = [ "<C-k>" ]
-run  = "kill eol"
+on = [ "<C-k>" ]
+run = "kill eol"
 desc = "Kill from cursor to end of line"
 
 [[input.prepend_keymap]]
-on   = [ "<C-w>" ]
-run  = "kill backward"
+on = [ "<C-w>" ]
+run = "kill backward"
 desc = "Kill word backward"
 
 [[input.prepend_keymap]]
-on   = [ "<C-d>" ]
-run  = "delete"
+on = [ "<C-d>" ]
+run = "delete"
 desc = "Delete character forward"
 
 [[input.prepend_keymap]]
-on   = [ "<C-h>" ]
-run  = "backspace"
+on = [ "<C-h>" ]
+run = "backspace"
 desc = "Delete character backward"
 
 [[input.prepend_keymap]]
-on   = "<Backspace>"
-run  = "backspace"
+on = "<Backspace>"
+run = "backspace"
 desc = "Delete character backward"
 
 [[input.prepend_keymap]]
-on   = "<Delete>"
-run  = "delete"
+on = "<Delete>"
+run = "delete"
 desc = "Delete character forward"
 
 [[input.prepend_keymap]]
-on   = "<Enter>"
-run  = "submit"
+on = "<Enter>"
+run = "close --submit"
 desc = "Submit input"
-
-# Select mode keybindings
-[[select.prepend_keymap]]
-on   = "<Esc>"
-run  = "close"
-desc = "Cancel selection"
-
-[[select.prepend_keymap]]
-on   = [ "<C-c>" ]
-run  = "close"
-desc = "Cancel selection"
-
-[[select.prepend_keymap]]
-on   = "j"
-run  = "arrow -1"
-desc = "Move cursor down"
-
-[[select.prepend_keymap]]
-on   = "k"
-run  = "arrow 1"
-desc = "Move cursor up"
-
-[[select.prepend_keymap]]
-on   = "<Enter>"
-run  = "submit"
-desc = "Submit selection"
 
 # Tasks mode keybindings
 [[tasks.prepend_keymap]]
-on   = "<Esc>"
-run  = "close"
+on = "<Esc>"
+run = "close"
 desc = "Close task manager"
 
 [[tasks.prepend_keymap]]
-on   = [ "<C-c>" ]
-run  = "close"
+on = [ "<C-c>" ]
+run = "close"
 desc = "Close task manager"
 
 [[tasks.prepend_keymap]]
-on   = "j"
-run  = "arrow -1"
+on = "j"
+run = "arrow 1"
 desc = "Move cursor down"
 
 [[tasks.prepend_keymap]]
-on   = "k"
-run  = "arrow 1"
+on = "k"
+run = "arrow -1"
 desc = "Move cursor up"
 
 [[tasks.prepend_keymap]]
-on   = "w"
-run  = "inspect"
+on = "w"
+run = "inspect"
 desc = "Inspect task"
 
 [[tasks.prepend_keymap]]
-on   = "c"
-run  = "cancel"
+on = "c"
+run = "cancel"
 desc = "Cancel task"
 
 # Help mode keybindings
 [[help.prepend_keymap]]
-on   = "<Esc>"
-run  = "close"
+on = "<Esc>"
+run = "close"
 desc = "Close help"
 
 [[help.prepend_keymap]]
-on   = [ "<C-c>" ]
-run  = "close"
+on = [ "<C-c>" ]
+run = "close"
 desc = "Close help"
 
 [[help.prepend_keymap]]
-on   = "j"
-run  = "arrow -1"
+on = "j"
+run = "arrow 1"
 desc = "Move cursor down"
 
 [[help.prepend_keymap]]
-on   = "k"
-run  = "arrow 1"
+on = "k"
+run = "arrow -1"
 desc = "Move cursor up"
 
 [[help.prepend_keymap]]
-on   = [ "<C-d>" ]
-run  = "arrow -5"
+on = [ "<C-d>" ]
+run = "arrow 5"
 desc = "Move cursor down 5 lines"
 
 [[help.prepend_keymap]]
-on   = [ "<C-u>" ]
-run  = "arrow 5"
+on = [ "<C-u>" ]
+run = "arrow -5"
+desc = "Move cursor up 5 lines"
+
+# Confirm mode keybindings
+[[confirm.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Cancel confirmation"
+
+[[confirm.prepend_keymap]]
+on = [ "<C-c>" ]
+run = "close"
+desc = "Cancel confirmation"
+
+[[confirm.prepend_keymap]]
+on = "j"
+run = "arrow 1"
+desc = "Move cursor down"
+
+[[confirm.prepend_keymap]]
+on = "k"
+run = "arrow -1"
+desc = "Move cursor up"
+
+[[confirm.prepend_keymap]]
+on = "<Enter>"
+run = "close --submit"
+desc = "Submit confirmation"
+
+# Pick mode keybindings
+[[pick.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Cancel picker"
+
+[[pick.prepend_keymap]]
+on = [ "<C-c>" ]
+run = "close"
+desc = "Cancel picker"
+
+[[pick.prepend_keymap]]
+on = "j"
+run = "arrow 1"
+desc = "Move cursor down"
+
+[[pick.prepend_keymap]]
+on = "k"
+run = "arrow -1"
+desc = "Move cursor up"
+
+[[pick.prepend_keymap]]
+on = "<Enter>"
+run = "close --submit"
+desc = "Submit selection"
+
+# Completion mode keybindings
+[[cmp.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Cancel completion"
+
+[[cmp.prepend_keymap]]
+on = [ "<C-c>" ]
+run = "close"
+desc = "Cancel completion"
+
+[[cmp.prepend_keymap]]
+on = "j"
+run = "arrow 1"
+desc = "Move cursor down"
+
+[[cmp.prepend_keymap]]
+on = "k"
+run = "arrow -1"
+desc = "Move cursor up"
+
+[[cmp.prepend_keymap]]
+on = "<Enter>"
+run = "close --submit"
+desc = "Submit completion"
+
+# Spot mode keybindings
+[[spot.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Close spotter"
+
+[[spot.prepend_keymap]]
+on = [ "<C-c>" ]
+run = "close"
+desc = "Close spotter"
+
+[[spot.prepend_keymap]]
+on = "j"
+run = "arrow 1"
+desc = "Move cursor down"
+
+[[spot.prepend_keymap]]
+on = "k"
+run = "arrow -1"
+desc = "Move cursor up"
+
+[[spot.prepend_keymap]]
+on = [ "<C-d>" ]
+run = "arrow 5"
+desc = "Move cursor down 5 lines"
+
+[[spot.prepend_keymap]]
+on = [ "<C-u>" ]
+run = "arrow -5"
 desc = "Move cursor up 5 lines"

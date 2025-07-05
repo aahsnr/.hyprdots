@@ -9,10 +9,10 @@ source $HOME/.config/zsh/fzf.zsh
 # source $HOME/.config/fzf/fzf.fedora
 source $HOME/.config/zsh/ripgrep.zsh
 source $HOME/.config/zsh/starship.zsh
-# source $HOME/.config/zsh/tealdeer.zsh
-# source $HOME/.config/zsh/thefuck.zsh
+source $HOME/.config/zsh/tealdeer.zsh
+source $HOME/.config/zsh/thefuck.zsh
 source $HOME/.config/zsh/tmux.zsh
-# source $HOME/.config/zsh/yazi.zsh
+source $HOME/.config/zsh/yazi.zsh # main error
 source $HOME/.config/zsh/zoxide.zsh
 
 

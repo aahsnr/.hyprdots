@@ -1,10 +1,10 @@
-[manager]
+[mgr]
 # Display and behavior
 show_hidden = false
 show_symlink = true
 linemode = "size"
 scrolloff = 5
-mouse_support = true
+mouse_events = ["click", "scroll"]  # Fixed: was mouse_support
 title_format = "Yazi: {cwd}"
 
 # Sorting
@@ -15,7 +15,7 @@ sort_translit = false
 
 # Selection and interaction
 tab_size = 4
-max_preview = 1048576  # 1MB in bytes
+# Removed max_preview as it doesn't exist in manager section
 
 [preview]
 # Image preview settings
@@ -76,51 +76,6 @@ fallback = [
     { run = 'xdg-open "$@"', desc = "Open with default application" },
 ]
 
-# File associations
-[[opener.rules]]
-name = "*/
-use = "edit"
-
-[[opener.rules]]
-mime = "text/*"
-use = "edit"
-
-[[opener.rules]]
-mime = "image/*"
-use = "image"
-
-[[opener.rules]]
-mime = "video/*"
-use = "video"
-
-[[opener.rules]]
-mime = "audio/*"
-use = "audio"
-
-[[opener.rules]]
-mime = "application/pdf"
-use = "document"
-
-[[opener.rules]]
-mime = "application/zip"
-use = "archive"
-
-[[opener.rules]]
-mime = "application/x-tar"
-use = "archive"
-
-[[opener.rules]]
-mime = "application/x-bzip2"
-use = "archive"
-
-[[opener.rules]]
-mime = "application/x-gzip"
-use = "archive"
-
-[[opener.rules]]
-name = "*"
-use = "fallback"
-
 [open]
 # Rules for opening files
 rules = [
@@ -147,6 +102,4 @@ image_alloc = 536870912  # 512MB
 image_bound = [0, 0]
 suppress_preload = false
 
-[log]
-# Logging configuration
-enabled = true
+# Removed [log] section as it's not a valid configuration section in current Yazi
