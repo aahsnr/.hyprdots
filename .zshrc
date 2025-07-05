@@ -15,8 +15,6 @@ source $HOME/.config/zsh/tmux.zsh
 source $HOME/.config/zsh/yazi.zsh # main error
 source $HOME/.config/zsh/zoxide.zsh
 
-
-
 # ===== History Configuration =====
 HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/history"
 HISTSIZE=50000
