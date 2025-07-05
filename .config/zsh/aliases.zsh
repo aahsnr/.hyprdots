@@ -6,11 +6,28 @@ command -v rg >/dev/null 2>&1 && alias grep='rg'
 command -v zoxide >/dev/null 2>&1 && alias cd='z'
 
 # ===== Fedora-specific Aliases =====
-alias dnf='dnf --color=always'
-alias dnf-update='sudo dnf update && sudo dnf autoremove'
-alias dnf-clean='sudo dnf clean all'
-alias dnf-history='dnf history'
-alias dnf-repos='dnf repolist'
+alias dnu='sudo dnf upgrade'
+alias dni='sudo dnf install'
+alias dns='dnf search'
+alias dnr='sudo dnf remove'
+alias dninfo='dnf info'
+alias dnl='dnf list'
+alias dnls='dnf list installed'
+alias dnrq='dnf repoquery'
+alias dnmc='sudo dnf makecache'
+alias dncheck='dnf check-update'
+alias dnhistory='dnf history'
+
+# Flatpak integration
+if command -v flatpak &> /dev/null; then
+    alias fpi='flatpak install'
+    alias fps='flatpak search'
+    alias fpu='flatpak update'
+    alias fpr='flatpak uninstall'
+    alias fpl='flatpak list'
+    alias fpinfo='flatpak info'
+fi
+
 
 # Systemctl aliases
 alias sctl='systemctl'
@@ -21,15 +38,6 @@ alias sctlr='sudo systemctl restart'
 alias sctlS='sudo systemctl stop'
 alias sctlq='systemctl status'
 
-# Flatpak aliases
-if command -v flatpak >/dev/null 2>&1; then
-  alias fp='flatpak'
-  alias fpi='flatpak install'
-  alias fpu='flatpak update'
-  alias fpr='flatpak uninstall'
-  alias fps='flatpak search'
-  alias fpl='flatpak list'
-fi
 
 # ===== Additional Fedora Tools =====
 # Podman aliases (if available)

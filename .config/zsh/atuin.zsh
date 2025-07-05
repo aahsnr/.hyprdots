@@ -43,32 +43,8 @@ export ATUIN_SYNC_FREQUENCY="600"  # 10 minutes
 # Fedora-specific settings
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 
-
-# Fedora-specific aliases with Atuin integration
-alias dnu='sudo dnf upgrade'
-alias dni='sudo dnf install'
-alias dns='dnf search'
-alias dnr='sudo dnf remove'
-alias dninfo='dnf info'
-alias dnl='dnf list'
-alias dnls='dnf list installed'
-alias dnrq='dnf repoquery'
-alias dnmc='sudo dnf makecache'
-alias dncheck='dnf check-update'
-alias dnhistory='dnf history'
-
-# Flatpak integration
-if command -v flatpak &> /dev/null; then
-    alias fpi='flatpak install'
-    alias fps='flatpak search'
-    alias fpu='flatpak update'
-    alias fpr='flatpak uninstall'
-    alias fpl='flatpak list'
-    alias fpinfo='flatpak info'
-fi
-
 # Function to show dnf history with better formatting
-dnf-history() {
+function show_dnf_history() {
     if command -v atuin &> /dev/null; then
         atuin search "dnf" --interactive
     else
@@ -77,7 +53,7 @@ dnf-history() {
 }
 
 # Function to check SELinux status and optimize Atuin accordingly
-optimize-atuin-selinux() {
+function optimize_atuin_selinux() {
     if command -v getenforce &> /dev/null; then
         local selinux_status=$(getenforce)
         echo "SELinux status: $selinux_status"
@@ -96,7 +72,7 @@ optimize-atuin-selinux() {
 
 # Run SELinux optimization on shell startup (once per day)
 if [[ ! -f ~/.cache/atuin-selinux-optimized-$(date +%Y%m%d) ]]; then
-    optimize-atuin-selinux
+    optimize_atuin_selinux
     mkdir -p ~/.cache
     touch ~/.cache/atuin-selinux-optimized-$(date +%Y%m%d)
     # Clean old optimization markers
@@ -104,7 +80,7 @@ if [[ ! -f ~/.cache/atuin-selinux-optimized-$(date +%Y%m%d) ]]; then
 fi
 
 # Function to show system info with Atuin context
-show-system-info() {
+function show_system_info() {
     echo "=== Fedora 42 System Information ==="
     echo "Kernel: $(uname -r)"
     
@@ -133,10 +109,10 @@ show-system-info() {
 }
 
 # Alias for quick system info
-alias sysinfo=show-system-info
+alias sysinfo=show_system_info
 
 # Function to optimize Atuin database for Btrfs
-optimize-atuin-btrfs() {
+function optimize_atuin_btrfs() {
     local db_path="$HOME/.local/share/atuin/history.db"
     
     if [[ -f "$db_path" ]] && findmnt -n -o FSTYPE / | grep -q btrfs; then
@@ -156,7 +132,7 @@ optimize-atuin-btrfs() {
 
 # Run optimization on shell startup (once per day)
 if [[ ! -f ~/.cache/atuin-btrfs-optimized-$(date +%Y%m%d) ]]; then
-    optimize-atuin-btrfs
+    optimize_atuin_btrfs
     mkdir -p ~/.cache
     touch ~/.cache/atuin-btrfs-optimized-$(date +%Y%m%d)
     # Clean old optimization markers
