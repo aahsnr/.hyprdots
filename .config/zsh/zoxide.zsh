@@ -22,7 +22,7 @@ export _ZO_RESOLVE_SYMLINKS=1  # Resolve symlinks
 [[ ! -d "$_ZO_DATA_DIR" ]] && mkdir -p "$_ZO_DATA_DIR"
 
 # Initialize zoxide with zsh integration
-eval "$(zoxide init zsh --cmd j)"
+eval "$(zoxide init zsh)"
 
 # ======================
 # Catppuccin Mocha Theme Colors
