@@ -53,7 +53,6 @@ $kotlin\
 $gradle\
 $lua\
 $nim\
-$nodejs\
 $ocaml\
 $opa\
 $perl\
@@ -210,13 +209,6 @@ format = " [lua](italic) [${symbol}${version}]($style)"
 version_format = "${raw}"
 symbol = "⨀ "
 style = "bold #f9e2af"
-
-[nodejs]
-format = " [node](italic) [◫ ($version)](bold #a6e3a1)"
-version_format = "${raw}"
-detect_files = ["package-lock.json", "yarn.lock"]
-detect_folders = ["node_modules"]
-detect_extensions = []
 
 [python]
 format = " [py](italic) [${symbol}${version}]($style)"

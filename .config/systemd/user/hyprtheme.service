@@ -11,7 +11,7 @@ ExecStartPre=/usr/bin/bash -c 'systemctl --user import-environment DISPLAY WAYLA
 ExecStart=/usr/bin/bash -c 'set -euo pipefail; \
     sleep 5; \
     export THEME="Colloid-Dark-Compact-Catppuccin"; \
-    export ICONS="Papirusk"; \
+    export ICONS="Papirus"; \
     export FONT="JetBrainsMono Nerd Font Medium 13"; \
     export CURSOR="Adwaita"; \
     if [[ -z "${DBUS_SESSION_BUS_ADDRESS:-}" ]]; then \

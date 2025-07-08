@@ -330,3 +330,9 @@ dnf-info() { dnf info "$1"; }
 # Source local configuration if it exists
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 #eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#
+# ===== Emacs Integration
+source ~/.zshrc.vterm 2>/dev/null || true
+
+# bun completions
+[ -s "/home/ahsan/.bun/_bun" ] && source "/home/ahsan/.bun/_bun"
