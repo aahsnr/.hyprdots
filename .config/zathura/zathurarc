@@ -83,6 +83,7 @@ set statusbar-h-padding 8
 set statusbar-v-padding 8
 set adjust-open "best-fit"
 set pages-per-row 1
+set first-page-column "1:1"
 set scroll-page-aware "true"
 set scroll-full-overlap 0.01
 set scroll-step 50
@@ -111,7 +112,7 @@ set first-page-column "1:1"
 # ----------------------------------
 # Font Configuration
 # ----------------------------------
-set font "monospace normal 9"
+set font "JetBrains Mono Medium 14"
 
 # ----------------------------------
 # Color and Display Settings
