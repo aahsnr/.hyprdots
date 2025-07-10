@@ -20,7 +20,7 @@ shcat() {
 }
 
 usage() {
-	shcat <<- EOF
+	shcat <<-EOF
 		Usage:
 		  $SELF_NAME \\
 		    [-h | --help]
@@ -65,7 +65,7 @@ usage() {
 }
 
 help() {
-	shcat <<- EOF
+	shcat <<-EOF
 		$SELF_NAME - Application launcher, file opener, default terminal launcher
 		for systemd environments.
 
@@ -105,7 +105,7 @@ help() {
 	case "$SELF_NAME" in
 	*-term | *-terminal | *-term-scope | *-terminal-scope | *-term-service | *-terminal-service) true ;;
 	*)
-		shcat <<- EOF
+		shcat <<-EOF
 			  -T
 			    Force launch in terminal (${TERMINAL_HANDLER} is used). Any unknown option
 			    starting with '-' after this will be passed to ${TERMINAL_HANDLER}.
@@ -116,7 +116,7 @@ help() {
 		EOF
 		;;
 	esac
-	shcat <<- EOF
+	shcat <<-EOF
 		  -S out|err|both
 		    Silence stdout stderr or both.
 
@@ -132,7 +132,7 @@ help() {
 	case "$SELF_NAME" in
 	*-open | *-open-scope | *-open-service) true ;;
 	*)
-		shcat <<- EOF
+		shcat <<-EOF
 			  -O | --open (also selected by default if \$0 ends with '-open')
 			    Opener mode: argument(s) are treated as file(s) or URL(s) to open.
 			    Desktop Entry for them is found via xdg-mime. Only single association
@@ -148,7 +148,7 @@ help() {
 		;;
 	esac
 
-	shcat <<- EOF
+	shcat <<-EOF
 		  --test
 		    Do not run anything, print command.
 
@@ -159,7 +159,7 @@ help() {
 
 	case "$SELF_NAME" in
 	*-open | *-open-scope | *-open-service)
-		shcat <<- EOF
+		shcat <<-EOF
 			File(s)|URL(s):
 
 			  Objects to query xdg-mime for associations and open. The only
@@ -167,7 +167,7 @@ help() {
 		EOF
 		;;
 	*)
-		shcat <<- EOF
+		shcat <<-EOF
 			Desktop Entry or Command:
 
 			  Use Desktop Entry ID, optionally suffixed with Action ID:
@@ -185,7 +185,7 @@ error() {
 	# Print messages to stderr, send notification (only first arg) if stderr is not interactive
 	printf '%s\n' "$@" >&2
 	# if notify-send is installed and stderr is not a terminal, also send notification
-	if [ ! -t 2 ] && command -v notify-send > /dev/null; then
+	if [ ! -t 2 ] && command -v notify-send >/dev/null; then
 		notify-send -u critical -i error -a "${SELF_NAME}" "Error" "$1"
 	fi
 }
@@ -194,7 +194,7 @@ message() {
 	# Print messages to stdout, send notification (only first arg) if stdout is not interactive
 	printf '%s\n' "$@"
 	# if notify-send is installed and stdout is not a terminal, also send notification
-	if [ ! -t 1 ] && command -v notify-send > /dev/null; then
+	if [ ! -t 1 ] && command -v notify-send >/dev/null; then
 		notify-send -u normal -i info -a "${SELF_NAME}" "Info" "$1"
 	fi
 }
@@ -216,7 +216,7 @@ if check_bool "${DEBUG-0}"; then
 		# print each arg at new line, prefix each printed line with 'D: '
 		while IFS='' read -r debug_line; do
 			printf 'D: %s\n' "$debug_line"
-		done <<- EOF >&2
+		done <<-EOF >&2
 			$(printf '%s\n' "$@")
 		EOF
 	}
@@ -311,8 +311,8 @@ find_entry() {
 			return 0
 			;;
 		esac
-	done 3<<- EOP
-		$(find -L "$@" 2> /dev/null)
+	done 3<<-EOP
+		$(find -L "$@" 2>/dev/null)
 	EOP
 
 	error "Could not find entry '$ENTRY_ID'!"
@@ -682,7 +682,7 @@ parse_entry_key() {
 		debug "checking TryExec executable '$value'"
 		de_expand_str "$value"
 		value=$EXPANDED_STR
-		if ! type "$value" > /dev/null 2>&1; then
+		if ! type "$value" >/dev/null 2>&1; then
 			error "${ENTRY_ID}: TryExec '$value' failed!"
 			return 1
 		fi
@@ -718,7 +718,7 @@ parse_entry_key() {
 		de_tokenize_exec "$EXPANDED_STR"
 		EXEC_RSEP_USEP=$EXEC_USEP
 		# get Exec[0]
-		IFS=$USEP read -r exec0 _rest <<- EOCMD
+		IFS=$USEP read -r exec0 _rest <<-EOCMD
 			$EXEC_RSEP_USEP
 		EOCMD
 		case "$exec0" in
@@ -733,7 +733,7 @@ parse_entry_key() {
 		*) EXEC_NAME=${exec0} ;;
 		esac
 		debug "checking Exec[0] executable '${EXEC_PATH:-$EXEC_NAME}'"
-		if ! type "${EXEC_PATH:-$EXEC_NAME}" > /dev/null 2>&1; then
+		if ! type "${EXEC_PATH:-$EXEC_NAME}" >/dev/null 2>&1; then
 			error "${ENTRY_ID}: Exec command '${EXEC_PATH:-$EXEC_NAME}' not found"
 			return 1
 		fi
@@ -856,11 +856,11 @@ read_entry_path() {
 		# A `Key=Value` pair
 		[a-zA-Z0-9-]*=*)
 			# Split
-			IFS='=' read -r key value <<- EOL
+			IFS='=' read -r key value <<-EOL
 				$line
 			EOL
 			# Trim
-			{ read -r key && read -r value; } <<- EOL
+			{ read -r key && read -r value; } <<-EOL
 				$key
 				$value
 			EOL
@@ -893,7 +893,7 @@ read_entry_path() {
 			;;
 		esac
 		# By default empty lines and comments get ignored
-	done < "$entry_path"
+	done <"$entry_path"
 
 	# check for required things for action
 	if [ -n "$entry_action" ]; then
@@ -926,7 +926,7 @@ read_entry_path() {
 
 random_string() {
 	# gets random 8 hex characters
-	tr -dc '0-9a-f' < /dev/urandom 2> /dev/null | head -c 8
+	tr -dc '0-9a-f' </dev/urandom 2>/dev/null | head -c 8
 }
 
 validate_entry_id() {
@@ -1019,7 +1019,7 @@ gen_unit_id() {
 		case "${UNIT_DESKTOP_SUBSTRING}${UNIT_APP_SUBSTRING}" in
 		*[!a-zA-Z:_.]*)
 			# prepend a character to shield potential . from being first
-			read -r UNIT_DESKTOP_SUBSTRING UNIT_APP_SUBSTRING <<- EOL
+			read -r UNIT_DESKTOP_SUBSTRING UNIT_APP_SUBSTRING <<-EOL
 				$(systemd-escape "A$UNIT_DESKTOP_SUBSTRING" "A$UNIT_APP_SUBSTRING")
 			EOL
 			# remove character
@@ -1134,7 +1134,7 @@ systemd_run() {
 				DefaultStandardOutput) dso=$value ;;
 				DefaultStandardError) dse=$value ;;
 				esac
-			done <<- EOF
+			done <<-EOF
 				$(systemctl --user show --property DefaultStandardOutput --property DefaultStandardError)
 			EOF
 			case "$dse" in
@@ -1162,9 +1162,9 @@ systemd_run() {
 
 	# silence scope output
 	case "${UNIT_TYPE}_${SILENT}" in
-	scope_out) exec > /dev/null ;;
-	scope_err) exec 2> /dev/null ;;
-	scope_both) exec > /dev/null 2>&1 ;;
+	scope_out) exec >/dev/null ;;
+	scope_err) exec 2>/dev/null ;;
+	scope_both) exec >/dev/null 2>&1 ;;
 	esac
 
 	# exec
@@ -1187,7 +1187,7 @@ parse_main_arg() {
 		return 1
 		;;
 	*.desktop:*)
-		IFS=':' read -r ENTRY_ID ENTRY_ACTION <<- EOA
+		IFS=':' read -r ENTRY_ID ENTRY_ACTION <<-EOA
 			$MAIN_ARG
 		EOA
 		;;
@@ -1243,7 +1243,7 @@ parse_main_arg() {
 
 	EXEC_NAME=$MAIN_ARG
 	debug "EXEC_NAME: $EXEC_NAME"
-	if ! type "$EXEC_NAME" > /dev/null 2>&1; then
+	if ! type "$EXEC_NAME" >/dev/null 2>&1; then
 		error "Executable not found: '$EXEC_NAME'"
 		return 1
 	fi
@@ -1251,7 +1251,7 @@ parse_main_arg() {
 
 check_terminal_handler() {
 	# checks terminal handler availability
-	if ! command -v "$TERMINAL_HANDLER" > /dev/null; then
+	if ! command -v "$TERMINAL_HANDLER" >/dev/null; then
 		error "Terminal launch requested but '$TERMINAL_HANDLER' is unavailable!"
 		exit 1
 	fi
@@ -1262,7 +1262,7 @@ get_mime() {
 	mime=
 	case "$1" in
 	[a-zA-Z]*:*)
-		IFS=':' read -r scheme _rest <<- EOF
+		IFS=':' read -r scheme _rest <<-EOF
 			$1
 		EOF
 		debug "potential scheme '$scheme'"
@@ -1355,7 +1355,7 @@ for choice in $UNIT_SLICE_CHOICES; do
 		continue
 		;;
 	[a-z]*=[a-zA-Z0-9_.-]*.slice)
-		IFS='=' read -r slice_abbr slice_id <<- EOF
+		IFS='=' read -r slice_abbr slice_id <<-EOF
 			$choice
 		EOF
 		;;
@@ -1479,7 +1479,7 @@ while [ "$#" -gt "0" ]; do
 			;;
 		*)
 			for choice in $UNIT_SLICE_CHOICES; do
-				IFS='=' read -r slice_abbr slice_id <<- EOF
+				IFS='=' read -r slice_abbr slice_id <<-EOF
 					$choice
 				EOF
 				case "$slice_abbr" in
@@ -1668,7 +1668,7 @@ elif [ "$FUZZEL_COMPAT" = "true" ]; then
 	MAIN_ARG=$FUZZEL_DESKTOP_FILE_ID
 	# Fuzzel compat mode, awaiting for https://codeberg.org/dnkl/fuzzel/issues/292
 	# ignore command from entry, take only metadata, use arg array as is.
-	if ! type "$1" > /dev/null 2>&1; then
+	if ! type "$1" >/dev/null 2>&1; then
 		error "Executable not found: '$1'"
 		exit 1
 	fi

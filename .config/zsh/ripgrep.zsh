@@ -77,13 +77,11 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 export FEDORA_RIPGREP_SPEC_PATHS="/usr/src/packages/SPECS:/home/$USER/rpmbuild/SPECS"
 export FEDORA_RIPGREP_SOURCE_PATHS="/usr/src/packages/SOURCES:/home/$USER/rpmbuild/SOURCES"
 
-
 # Search in RPM build directories
 alias rg-rpm="rg --type-set 'rpm:*.spec,*.patch,*.changes' --type rpm"
 
 # Search in specific RPM build stages
 alias rg-build="rg --glob='*/BUILD/*' --glob='*/BUILDROOT/*'"
-
 
 # Search systemd service files
 alias rg-systemd="rg --type-set 'systemd:*.service,*.target,*.mount,*.socket' --type systemd"

@@ -51,3 +51,14 @@ if command -v podman >/dev/null 2>&1; then
   alias pdS='podman stop'
 fi
 
+#=== Misc ===
+if command -v emacs >/dev/null 2>&1; then
+  alias emacstty='emacsclient -tty'
+  alias pd='podman'
+  alias pdi='podman images'
+  alias pdc='podman ps'
+  alias pdr='podman run'
+  alias pds='podman start'
+  alias pdS='podman stop'
+fi
+

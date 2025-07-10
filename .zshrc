@@ -1,7 +1,7 @@
 source $HOME/.config/zsh/export.zsh
 source $HOME/.config/zsh/aliases.zsh
 source $HOME/.cargo/env
-
+source /home/linuxbrew/.linuxbrew/share/zsh/site-functions
 source $HOME/.config/zsh/atuin.zsh
 source $HOME/.config/zsh/bat.zsh
 source $HOME/.config/zsh/eza.zsh
@@ -325,6 +325,8 @@ extract() {
 dnf-installed() { dnf list installed | grep -i "$1"; }
 dnf-available() { dnf list available | grep -i "$1"; }
 dnf-info() { dnf info "$1"; }
+
+autoload -U compaudit compinit
 
 # ===== Local Configuration =====
 # Source local configuration if it exists
