@@ -1,7 +1,6 @@
 source $HOME/.config/zsh/export.zsh
 source $HOME/.config/zsh/aliases.zsh
 source $HOME/.cargo/env
-source /home/linuxbrew/.linuxbrew/share/zsh/site-functions
 source $HOME/.config/zsh/atuin.zsh
 source $HOME/.config/zsh/bat.zsh
 source $HOME/.config/zsh/eza.zsh
