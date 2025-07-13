@@ -1,18 +1,23 @@
+{ pkgs, config, ... }: 
+
 {
-  pkgs,
-  config,
-  ...
-}: {
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
 
-    userName = "aahsnr";
+    userName = "ahsanur041";
     userEmail = "ahsanur041@proton.me";
 
-    signing = {
-      key = config.programs.gpg.settings.default-key;
-      signByDefault = true;
+    # signing = {
+    #   #key = config.programs.gpg.settings.default-key;
+    #   signByDefault = true;
+    # };
+
+    delta = {
+      enable = true;
+      options = {
+        whitespace-error-style = "22 reverse";
+      };
     };
 
     lfs = {
@@ -23,7 +28,7 @@
     extraConfig = {
       credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
 
-      init.defaultBranch = "main";
+      init.defaultBranch = "master";
       branch.autosetupmerge = "true";
       pull.ff = "only";
       color.ui = "auto";
@@ -52,6 +57,7 @@
 
     aliases = {
       # Semantic commit message aliases
+      #g = "lazygit";
       chore = "!f() { git commit -m \"chore($1): $2\"; }; f";
       docs = "!f() { git commit -m \"docs($1): $2\"; }; f";
       feat = "!f() { git commit -m \"feat($1): $2\"; }; f";
@@ -69,4 +75,9 @@
       "node_modules"
     ];
   };
+
+  programs = {
+    gh.enable = true;
+  };
+
 }

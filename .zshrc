@@ -330,7 +330,7 @@ autoload -U compaudit compinit
 # ===== Local Configuration =====
 # Source local configuration if it exists
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
-#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 #
 # ===== Emacs Integration
 source ~/.zshrc.vterm 2>/dev/null || true

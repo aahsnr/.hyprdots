@@ -1,5 +1,0 @@
-# ~/.config/hypr/hyprpaper.conf
-splash = off
-ipc = on
-preload = $HOME/.config/hypr/background.png
-wallpaper = HDMI-A-1, $HOME/.config/hypr/background.png

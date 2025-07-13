@@ -1,0 +1,412 @@
+{ config, pkgs, lib, ... }:
+
+{
+  # Enable Starship with Zsh integration
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    
+    settings = {
+      # Basic configuration
+      add_newline = false;
+      continuation_prompt = "[▸▹ ](#6c7086)";
+      
+      # Main prompt format
+      format = lib.concatStrings [
+        "($nix_shell$container$fill$git_metrics\n)"
+        "$cmd_duration"
+        "$hostname"
+        "$localip"
+        "$shlvl"
+        "$shell"
+        "$env_var"
+        "$jobs"
+        "$sudo"
+        "$username"
+        "$character"
+      ];
+      
+      # Right side format
+      right_format = lib.concatStrings [
+        "$singularity"
+        "$kubernetes"
+        "$directory"
+        "$vcsh"
+        "$fossil_branch"
+        "$git_branch"
+        "$git_commit"
+        "$git_state"
+        "$git_status"
+        "$hg_branch"
+        "$pijul_channel"
+        "$docker_context"
+        "$package"
+        "$c"
+        "$cpp"
+        "$cmake"
+        "$cobol"
+        "$daml"
+        "$dart"
+        "$deno"
+        "$dotnet"
+        "$elixir"
+        "$elm"
+        "$erlang"
+        "$fennel"
+        "$golang"
+        "$guix_shell"
+        "$haskell"
+        "$haxe"
+        "$helm"
+        "$java"
+        "$julia"
+        "$kotlin"
+        "$gradle"
+        "$lua"
+        "$nim"
+        "$ocaml"
+        "$opa"
+        "$perl"
+        "$php"
+        "$pulumi"
+        "$purescript"
+        "$python"
+        "$raku"
+        "$rlang"
+        "$red"
+        "$ruby"
+        "$rust"
+        "$scala"
+        "$solidity"
+        "$swift"
+        "$terraform"
+        "$vlang"
+        "$vagrant"
+        "$zig"
+        "$buf"
+        "$conda"
+        "$pixi"
+        "$meson"
+        "$spack"
+        "$memory_usage"
+        "$aws"
+        "$gcloud"
+        "$openstack"
+        "$azure"
+        "$crystal"
+        "$custom"
+        "$status"
+        "$os"
+        "$battery"
+        "$time"
+      ];
+      
+      # Fill configuration
+      fill = {
+        symbol = "";
+      };
+      
+      # Character configuration with Catppuccin Mocha colors
+      character = {
+        format = "$symbol ";
+        success_symbol = "[◎](bold italic #f9e2af)";
+        error_symbol = "[○](italic #cba6f7)";
+        vimcmd_symbol = "[■](italic #6c7086 #a6e3a1)";
+        # Note: These vim symbols are not supported in all shells
+        vimcmd_replace_one_symbol = "◌";
+        vimcmd_replace_symbol = "□";
+        vimcmd_visual_symbol = "▼";
+      };
+      
+      # Environment variable configuration
+      env_var = {
+        VIMSHELL = {
+          format = "[$env_value]($style)";
+          style = "#a6e3a1 italic";
+        };
+      };
+      
+      # Sudo configuration
+      sudo = {
+        format = "[$symbol]($style)";
+        style = "bold italic #cba6f7";
+        symbol = "⋈┈";
+        disabled = false;
+      };
+      
+      # Username configuration
+      username = {
+        style_user = "#f9e2af bold italic";
+        style_root = "#cba6f7 bold italic";
+        format = "[⭘ $user]($style) ";
+        disabled = false;
+        show_always = false;
+      };
+      
+      # Directory configuration
+      directory = {
+        home_symbol = "⌂";
+        truncation_length = 2;
+        truncation_symbol = "□ ";
+        read_only = " ◈";
+        use_os_path_sep = true;
+        style = "italic #89b4fa";
+        format = "[$path]($style)[$read_only]($read_only_style)";
+        repo_root_style = "bold #89b4fa";
+        repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [△](bold #89b4fa)";
+      };
+      
+      # Command duration configuration
+      cmd_duration = {
+        format = "[◄ $duration ](italic #cdd6f4)";
+      };
+      
+      # Jobs configuration
+      jobs = {
+        format = "[$symbol$number]($style) ";
+        style = "#cdd6f4";
+        symbol = "[▶](#89b4fa italic)";
+      };
+      
+      # Local IP configuration
+      localip = {
+        ssh_only = true;
+        format = " ◯[$localipv4](bold #f5c2e7)";
+        disabled = false;
+      };
+      
+      # Time configuration
+      time = {
+        disabled = false;
+        format = "[ $time]($style)";
+        time_format = "%I:%M %p";
+        utc_time_offset = "local";
+        style = "italic #6c7086";
+      };
+      
+      # Battery configuration
+      battery = {
+        format = "[ $percentage $symbol]($style)";
+        full_symbol = "█";
+        charging_symbol = "[↑](italic bold #a6e3a1)";
+        discharging_symbol = "↓";
+        unknown_symbol = "░";
+        empty_symbol = "▃";
+        display = [
+          {
+            threshold = 20;
+            style = "italic bold #f38ba8";
+          }
+          {
+            threshold = 60;
+            style = "italic #6c7086 #cba6f7";
+          }
+          {
+            threshold = 70;
+            style = "italic #6c7086 #f9e2af";
+          }
+        ];
+      };
+      
+      # Git branch configuration
+      git_branch = {
+        format = " [$branch(:$remote_branch)]($style)";
+        symbol = "[△](bold italic #89b4fa)";
+        style = "italic #89b4fa";
+        truncation_symbol = "⋯";
+        truncation_length = 11;
+        ignore_branches = ["main" "master"];
+        only_attached = true;
+      };
+      
+      # Git metrics configuration
+      git_metrics = {
+        format = "([▴$added]($added_style))([▿$deleted]($deleted_style))";
+        added_style = "italic #6c7086 #a6e3a1";
+        deleted_style = "italic #6c7086 #f38ba8";
+        ignore_submodules = true;
+        disabled = false;
+      };
+      
+      # Git status configuration
+      git_status = {
+        style = "bold italic #89b4fa";
+        format = "([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))";
+        conflicted = "[◪◦](italic #f5c2e7)";
+        ahead = "[▴│[${count}](bold #cdd6f4)│](italic #a6e3a1)";
+        behind = "[▿│[${count}](bold #cdd6f4)│](italic #f38ba8)";
+        diverged = "[◇ ▴┤[${ahead_count}](regular #cdd6f4)│▿┤[${behind_count}](regular #cdd6f4)│](italic #f5c2e7)";
+        untracked = "[◌◦](italic #f9e2af)";
+        stashed = "[◃◈](italic #cdd6f4)";
+        modified = "[●◦](italic #f9e2af)";
+        staged = "[▪┤[$count](bold #cdd6f4)│](italic #94e2d5)";
+        renamed = "[◎◦](italic #89b4fa)";
+        deleted = "[✕](italic #f38ba8)";
+      };
+      
+      # Language-specific configurations
+      deno = {
+        format = " [deno](italic) [∫ $version](#a6e3a1 bold)";
+        version_format = "\${raw}";
+      };
+      
+      lua = {
+        format = " [lua](italic) [\${symbol}\${version}]($style)";
+        version_format = "\${raw}";
+        symbol = "⨀ ";
+        style = "bold #f9e2af";
+      };
+      
+      python = {
+        format = " [py](italic) [\${symbol}\${version}]($style)";
+        symbol = "[⌉](bold #89b4fa)⌊ ";
+        version_format = "\${raw}";
+        style = "bold #f9e2af";
+      };
+      
+      ruby = {
+        format = " [rb](italic) [\${symbol}\${version}]($style)";
+        symbol = "◆ ";
+        version_format = "\${raw}";
+        style = "bold #f38ba8";
+      };
+      
+      rust = {
+        format = " [rs](italic) [$symbol$version]($style)";
+        symbol = "⊃ ";
+        version_format = "\${raw}";
+        style = "bold #fab387";
+      };
+      
+      package = {
+        format = " [pkg](italic #6c7086) [$symbol$version]($style)";
+        version_format = "\${raw}";
+        symbol = "◨ ";
+        style = "#6c7086 #f9e2af italic bold";
+      };
+      
+      swift = {
+        format = " [sw](italic) [\${symbol}\${version}]($style)";
+        symbol = "◁ ";
+        style = "bold #fab387";
+        version_format = "\${raw}";
+      };
+      
+      # Cloud and tool configurations
+      aws = {
+        disabled = true;
+        format = " [aws](italic) [$symbol $profile $region]($style)";
+        style = "bold #89b4fa";
+        symbol = "▲ ";
+      };
+      
+      buf = {
+        symbol = "■ ";
+        format = " [buf](italic) [$symbol $version $buf_version]($style)";
+      };
+      
+      c = {
+        symbol = "ℂ ";
+        format = " [$symbol($version(-$name))]($style)";
+      };
+      
+      cpp = {
+        symbol = "ℂ ";
+        format = " [$symbol($version(-$name))]($style)";
+      };
+      
+      conda = {
+        symbol = "◯ ";
+        format = " conda [$symbol$environment]($style)";
+      };
+      
+      pixi = {
+        symbol = "■ ";
+        format = " pixi [$symbol$version ($environment )]($style)";
+      };
+      
+      dart = {
+        symbol = "◁◅ ";
+        format = " dart [$symbol($version )]($style)";
+      };
+      
+      docker_context = {
+        symbol = "◧ ";
+        format = " docker [$symbol$context]($style)";
+      };
+      
+      elixir = {
+        symbol = "△ ";
+        format = " exs [$symbol $version OTP $otp_version ]($style)";
+      };
+      
+      elm = {
+        symbol = "◩ ";
+        format = " elm [$symbol($version )]($style)";
+      };
+      
+      golang = {
+        symbol = "∩ ";
+        format = " go [$symbol($version )]($style)";
+      };
+      
+      haskell = {
+        symbol = "❯λ ";
+        format = " hs [$symbol($version )]($style)";
+      };
+      
+      java = {
+        symbol = "∪ ";
+        format = " java [\${symbol}(${version} )]($style)";
+      };
+      
+      julia = {
+        symbol = "◎ ";
+        format = " jl [$symbol($version )]($style)";
+      };
+      
+      memory_usage = {
+        symbol = "▪▫▪ ";
+        format = " mem [\${ram}( \${swap})]($style)";
+      };
+      
+      nim = {
+        symbol = "▴▲▴ ";
+        format = " nim [$symbol($version )]($style)";
+      };
+      
+      # Nix shell configuration
+      nix_shell = {
+        style = "bold italic #6c7086 #89b4fa";
+        symbol = "✶";
+        format = "[$symbol nix⎪$state⎪]($style) [$name](italic #6c7086 #cdd6f4)";
+        impure_msg = "[⌽](bold #6c7086 #f38ba8)";
+        pure_msg = "[⌾](bold #6c7086 #a6e3a1)";
+        unknown_msg = "[◌](bold #6c7086 #f9e2af)";
+      };
+      
+      spack = {
+        symbol = "◇ ";
+        format = " spack [$symbol$environment]($style)";
+      };
+      
+      # Line break and status
+      line_break = {
+        disabled = true;
+      };
+      
+      status = {
+        format = "[\[$symbol$status\]]($style) ";
+        symbol = "✖";
+        success_symbol = "";
+        not_executable_symbol = "🚫";
+        not_found_symbol = "🔍";
+        sigint_symbol = "🧱";
+        signal_symbol = "⚡";
+        style = "bold #f38ba8";
+        map_symbol = true;
+        disabled = false;
+      };
+    };
+  };
+}

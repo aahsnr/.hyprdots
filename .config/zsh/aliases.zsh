@@ -61,4 +61,3 @@ if command -v emacs >/dev/null 2>&1; then
   alias pds='podman start'
   alias pdS='podman stop'
 fi
-
