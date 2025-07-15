@@ -28,6 +28,7 @@
     # ".screenrc".source = dotfiles/screenrc;
   };
 
+  # nix-pkgs: yazi texlab tectonic emacs-lsp-booster
   home.packages = with pkgs; [
     bun
     bottom

@@ -57,7 +57,7 @@
 
     aliases = {
       # Semantic commit message aliases
-      #g = "lazygit";
+      gg = "lazygit";
       chore = "!f() { git commit -m \"chore($1): $2\"; }; f";
       docs = "!f() { git commit -m \"docs($1): $2\"; }; f";
       feat = "!f() { git commit -m \"feat($1): $2\"; }; f";
