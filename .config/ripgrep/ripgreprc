@@ -1,15 +1,15 @@
-# Catppuccin Mocha theme colors
---colors=path:fg:#cba6f7      # Mauve (file paths)
---colors=path:style:bold
---colors=line:fg:#bac2de      # Subtext1 (line numbers)
---colors=line:style:nobold
---colors=column:fg:#9399b2    # Overlay2 (column numbers)
---colors=column:style:nobold
---colors=match:fg:#f5c2e7     # Pink (matches)
---colors=match:style:bold
---colors=separator:fg:#9399b2 # Overlay2 (separators)
---colors=context:fg:#6c7086   # Overlay0 (context lines)
-
+# # Catppuccin Mocha theme colors
+# --colors=path:fg:#cba6f7      # Mauve (file paths)
+# --colors=path:style:bold
+# --colors=line:fg:#bac2de      # Subtext1 (line numbers)
+# --colors=line:style:nobold
+# --colors=column:fg:#9399b2    # Overlay2 (column numbers)
+# --colors=column:style:nobold
+# --colors=match:fg:#f5c2e7     # Pink (matches)
+# --colors=match:style:bold
+# --colors=separator:fg:#9399b2 # Overlay2 (separators)
+# --colors=context:fg:#6c7086   # Overlay0 (context lines)
+#
 # Performance optimizations
 --max-columns=300
 --max-columns-preview

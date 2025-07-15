@@ -6,7 +6,7 @@
     enable = true;
     
     # Set the default shell for the user
-    defaultKeymap = "viins";
+    defaultKeymap = "us";
     
     # History configuration
     history = {
