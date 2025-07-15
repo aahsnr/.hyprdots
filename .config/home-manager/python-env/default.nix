@@ -20,7 +20,7 @@ let
       cc = pkgs.gcc.override {
         # Use optimization flags that don't break reproducibility
         extraBuildCommands = ''
-          export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -O2 -pipe"
+          export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -O3 -pipe -flto"
         '';
       };
     };

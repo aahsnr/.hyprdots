@@ -8,11 +8,11 @@
     extraOutputsToInstall = ["doc" "info" "devdoc"];
     
     #--- Setting Session Variables ---
-    # sessionVariables = {
-    #   EDITOR = "nvim";
-    #   BROWSER = "brave";
-    #   TERMINAL = "alacritty";
-    # };
+    sessionVariables = {
+      EDITOR = "emacsclient -c -a 'emacs'";
+      BROWSER = "zen-browser";
+      TERMINAL = "kitty";
+    };
 
     #--- Setting Session Path ---
     sessionPath = [
@@ -30,24 +30,23 @@
 
   # nix-pkgs: yazi texlab tectonic emacs-lsp-booster
   home.packages = with pkgs; [
-    bun
-    bottom
-    dart-sass
+    atuin
     emacs-lsp-booster
-    matugen
+    eza
+    lazygit
     markdownlint-cli
     nix-prefetch-git
     nix-prefetch-github
+    starship
     tectonic
     texlab
     yazi
   ];
 
   imports = [ 
-    ./fonts
+    # ./fonts
     # ./git
     # ./gpg
-    ./pkgs
     # inputs.nix-doom-emacs-unstraightened.hmModule
   ];
 
