@@ -13,4 +13,4 @@ export PATH="$PATH:$HOME/.config/emacs/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
 export LANG="en_US.UTF-8"
 export COLORTERM=truecolor
-export PATH=$PATH:/var/lib/flatpak/exports/bin
+export PATH=$PATH:$HOME/.local/share/flatpak/exports/bin
