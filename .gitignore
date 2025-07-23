@@ -16,6 +16,7 @@
 .config/emacs/.Emacs.org.~undo-tree~
 .config/home-manager/flake.lock
 .config/nvim/tags
+.config/mpv/watchlater
 .config/nvim/test.sh
 .config/nvim/.luarc.json
 .config/nvim/nvim

@@ -11,5 +11,5 @@ return {
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.fuzzy-finder.telescope-nvim" },
   { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
-  --  { import = "astrocommunity.colorscheme.tokyonight-nvim" },
+  { import = "astrocommunity.colorscheme.tokyonight-nvim" },
 }
